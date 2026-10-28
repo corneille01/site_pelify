@@ -1,0 +1,355 @@
+diff --git a/css/style.css b/css/style.css
+index dd75068..07238e4 100644
+--- a/css/style.css
++++ b/css/style.css
+@@ -14,12 +14,12 @@ a{color:var(--teal)}a:hover{color:var(--ink)}
+ @media(min-width:1200px){.container{max-width:1280px}}
+ @media(min-width:1400px){.container{max-width:1500px}}
+ 
+-/* Titres : alternance rose / encre (rose / cyan sur fond sombre) */
+-main section:nth-of-type(even) h2,.st.p{color:var(--pink)}
+-main section:nth-of-type(odd) h2,.st{color:var(--ink)}
+-main section.dark:nth-of-type(even) h2{color:var(--accent)}
++/* Titres : texte encre / blanc, avec UN mot clé en rose (<span class="hl">) */
++main h2,.st{color:var(--ink)}
++.dark h2,footer h2{color:#fff}
++.hl{color:var(--pink)}
++.hero .hl,.dark .hl,footer .hl{color:var(--accent)}
+ .st{text-transform:uppercase;font-size:clamp(1.1rem,2.4vw,1.6rem)}
+-.st.p{color:var(--pink)}
+ 
+ /* Navigation */
+ .navbar{background:#fff;border-bottom:1px solid #dfe5ea;padding:.6rem 0}
+@@ -50,12 +50,17 @@ main section.dark:nth-of-type(even) h2{color:var(--accent)}
+ 
+ /* Hero / carrousel */
+ .hero{background:var(--bg);color:var(--text);position:relative}
+-.hero .carousel-item{padding:3.5rem 0 5rem}
++.hero .carousel-item{min-height:clamp(30rem,72vh,41rem);padding:3.5rem 0 5rem}
++.hero .carousel-item.active,.hero .carousel-item-next,.hero .carousel-item-prev{display:flex;align-items:center}
++.hero .slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
++.hero .carousel-item::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,8,.94) 0%,rgba(5,5,8,.78) 45%,rgba(5,5,8,.3) 100%)}
++.hero .carousel-caption{position:relative;inset:auto;z-index:2;width:100%;padding:0;text-align:left;color:var(--text)}
+ .hero .carousel-item .container{padding-inline:clamp(4rem,9vw,8rem)}
++.hero .carousel-caption .container>*{max-width:46rem}
+ .hero h1,.hero .h1{color:#fff;text-align:left!important}
+-.hero .carousel-item:nth-child(even) .h1{color:var(--accent)}
+ .hero p.lead{font-size:1.1rem;font-weight:500;border-left:5px solid var(--accent);padding-left:1rem;margin:1.2rem 0 1.6rem}
+-.hero .media{aspect-ratio:16/10;min-height:0;border:1px solid rgba(255,255,255,.14)}
++.hero .acts{display:flex;flex-wrap:wrap;gap:.6rem}
++.carousel-indicators,.carousel-control-prev,.carousel-control-next{z-index:5}
+ .carousel-indicators{margin-bottom:1.1rem}
+ .carousel-indicators [data-bs-target]{width:44px;height:6px;background:var(--primary);border:0;opacity:.45}
+ .carousel-indicators .active{opacity:1}
+@@ -109,7 +114,7 @@ details p{margin:.6rem 0 0}
+ 
+ /* Pied de page */
+ footer{background:var(--bg);color:var(--text);font-size:.95rem}
+-footer h2{color:var(--primary)}footer h3{font-size:1rem;color:#fff;text-transform:uppercase;margin-bottom:1rem}
++footer h3{font-size:1rem;color:#fff;text-transform:uppercase;margin-bottom:1rem}
+ footer a{color:var(--primary)}
+ footer .cta{padding:4rem 0 3rem;border-bottom:1px solid #24243a}
+ footer .cta p{max-width:44rem}
+@@ -143,24 +148,32 @@ footer address{font-style:normal;margin:0}
+ section.blk{padding:4.5rem 0}
+ .hero .carousel-item{padding:1.5rem 0 5rem}
+ .hero .carousel-item .container{padding-inline:1.25rem}
+-.hero .media{aspect-ratio:16/9}
++.hero .carousel-item::after{background:linear-gradient(180deg,rgba(5,5,8,.9),rgba(5,5,8,.72))}
+ .hero p.lead{font-size:1rem}
++#pause{top:.8rem;bottom:auto}
+ .carousel-control-prev,.carousel-control-next{top:auto;bottom:.6rem;width:3rem;height:3rem}
+ .carousel-control-next{right:auto;left:3rem}
+ }
+ 
+-/* Mobile : sections toujours côte à côte, cartes en défilement horizontal */
++/* Mobile : sections toujours côte à côte, cartes en défilement horizontal,
++   texte en défilement vertical dans la hauteur de la boîte image */
+ @media(max-width:767.98px){
+ body{font-size:.82rem;line-height:1.55;text-align:left;hyphens:manual}
+ section.blk{padding:3.5rem 0}
+ .sub{font-size:.85rem}
+-.media{min-height:160px}
++h2{font-size:1.05rem;overflow-wrap:anywhere}
++.media{min-height:0;aspect-ratio:var(--m-ratio,3/4)}
++.media.full img{position:absolute;inset:0;height:100%;object-fit:cover;object-position:center top}
++.row>.scr{position:relative;contain:size;align-self:stretch;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--pink) transparent;padding-bottom:.25rem}
++.scr>*{flex-shrink:0}
+ .btn-p,.btn-o{font-size:.7rem;padding:.6rem .8rem}
+ .hero .btn-p,.hero .btn-o{font-size:.8rem;padding:.75rem 1.1rem}
+ ul.chk li{padding-left:1.2rem;margin-bottom:.35rem}
+ ul.chk li::before{width:.5rem;height:.5rem;border-width:2px}
+-.cards{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem}
++.cards{position:relative;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem}
+ .cards>*{flex:0 0 78%;scroll-snap-align:start}
+ .trust ul{gap:.3rem 1rem;font-size:.8rem}
+ }
++/* Petit mobile : la gouttière g-5 du pied de page dépassait du conteneur (scroll horizontal) */
++@media(max-width:575.98px){footer .cols.row{--bs-gutter-x:1.5rem}}
+ @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.carousel-item{transition:none!important}.rea{transition:none}}
+\ No newline at end of file
+diff --git a/index.html b/index.html
+index 3441db8..b7cd037 100644
+--- a/index.html
++++ b/index.html
+@@ -240,91 +240,82 @@
+           </div>
+           <div class="carousel-inner">
+             <div class="carousel-item active">
+-              <div class="container">
+-                <div class="row g-4 g-lg-5 align-items-center">
+-                  <div class="col-lg-6 tx">
+-                    <h1>Des outils numériques sur mesure</h1>
+-                    <p class="lead">
+-                      Freelance en Occitanie, nous concevons votre application
+-                      web, carte interactive, base de données et back-office :
+-                      nous remplaçons vos fichiers éparpillés par un outil
+-                      simple que votre équipe adopte.
+-                    </p>
+-                    <div class="acts">
+-                      <a class="btn-p" href="#outils"
+-                        >Voir les outils sur mesure</a
+-                      ><a class="btn-o" href="#contact">Décrire mon besoin</a>
+-                    </div>
+-                  </div>
+-                  <div class="col-lg-6 order-first order-lg-last">
+-                    <div class="media">
+-                      <img
+-                        src="img/illu-outils.svg"
+-                        width="800"
+-                        height="520"
+-                        alt="Aperçu d’une carte interactive et d’un tableau de bord conçus sur mesure"
+-                      />
+-                    </div>
++              <img
++                class="slide-bg"
++                src="img/illu-outils.svg"
++                width="800"
++                height="520"
++                alt="Aperçu d’une carte interactive et d’un tableau de bord conçus sur mesure"
++              />
++              <div class="carousel-caption">
++                <div class="container">
++                  <h1>
++                    Des outils numériques <span class="hl">sur mesure</span>
++                  </h1>
++                  <p class="lead">
++                    Freelance en Occitanie, nous concevons votre application
++                    web, carte interactive, base de données et back-office :
++                    nous remplaçons vos fichiers éparpillés par un outil
++                    simple que votre équipe adopte.
++                  </p>
++                  <div class="acts">
++                    <a class="btn-p" href="#outils"
++                      >Voir les outils sur mesure</a
++                    ><a class="btn-o" href="#contact">Décrire mon besoin</a>
+                   </div>
+                 </div>
+               </div>
+             </div>
+ 
+             <div class="carousel-item">
+-              <div class="container">
+-                <div class="row g-4 g-lg-5 align-items-center">
+-                  <div class="col-lg-6 tx">
+-                    <p class="h1">Vos tâches répétitives, automatisées</p>
+-                    <p class="lead">
+-                      Automatisation Python et PHP : un formulaire, un fichier
+-                      CSV ou un export arrive, il est contrôlé, nettoyé et
+-                      enregistré sans copier-coller.
+-                    </p>
+-                    <div class="acts">
+-                      <a class="btn-p" href="#automatisation"
+-                        >Voir l’automatisation</a
+-                      ><a class="btn-o" href="#contact">Parler de mes tâches</a>
+-                    </div>
+-                  </div>
+-                  <div class="col-lg-6 order-first order-lg-last">
+-                    <div class="media">
+-                      <img
+-                        src="img/illu-pipeline.svg"
+-                        width="800"
+-                        height="520"
+-                        alt="Schéma d’un pipeline : collecte, contrôle, base de données, restitution"
+-                      />
+-                    </div>
++              <img
++                class="slide-bg"
++                src="img/illu-pipeline.svg"
++                width="800"
++                height="520"
++                alt="Schéma d’un pipeline : collecte, contrôle, base de données, restitution"
++              />
++              <div class="carousel-caption">
++                <div class="container">
++                  <p class="h1">
++                    Vos tâches répétitives, <span class="hl">automatisées</span>
++                  </p>
++                  <p class="lead">
++                    Automatisation Python et PHP : un formulaire, un fichier
++                    CSV ou un export arrive, il est contrôlé, nettoyé et
++                    enregistré sans copier-coller.
++                  </p>
++                  <div class="acts">
++                    <a class="btn-p" href="#automatisation"
++                      >Voir l’automatisation</a
++                    ><a class="btn-o" href="#contact">Parler de mes tâches</a>
+                   </div>
+                 </div>
+               </div>
+             </div>
+ 
+             <div class="carousel-item">
+-              <div class="container">
+-                <div class="row g-4 g-lg-5 align-items-center">
+-                  <div class="col-lg-6 tx">
+-                    <p class="h1">Vos données, conformes au RGPD</p>
+-                    <p class="lead">
+-                      Conformité RGPD opérationnelle : registre des traitements,
+-                      analyse d’impact, durées de conservation, consentement.
+-                      Des documents et des outils prêts à présenter à la CNIL.
+-                    </p>
+-                    <div class="acts">
+-                      <a class="btn-p" href="#rgpd"
+-                        >Voir l’accompagnement RGPD</a
+-                      ><a class="btn-o" href="#contact">Faire le point</a>
+-                    </div>
+-                  </div>
+-                  <div class="col-lg-6 order-first order-lg-last">
+-                    <div class="media">
+-                      <img
+-                        src="img/illu-rgpd.svg"
+-                        width="800"
+-                        height="520"
+-                        alt="Illustration d’un bouclier et d’un cadenas de protection des données"
+-                      />
+-                    </div>
++              <img
++                class="slide-bg"
++                src="img/illu-rgpd.svg"
++                width="800"
++                height="520"
++                alt="Illustration d’un bouclier et d’un cadenas de protection des données"
++              />
++              <div class="carousel-caption">
++                <div class="container">
++                  <p class="h1">
++                    Vos données, conformes au <span class="hl">RGPD</span>
++                  </p>
++                  <p class="lead">
++                    Conformité RGPD opérationnelle : registre des traitements,
++                    analyse d’impact, durées de conservation, consentement.
++                    Des documents et des outils prêts à présenter à la CNIL.
++                  </p>
++                  <div class="acts">
++                    <a class="btn-p" href="#rgpd"
++                      >Voir l’accompagnement RGPD</a
++                    ><a class="btn-o" href="#contact">Faire le point</a>
+                   </div>
+                 </div>
+               </div>
+@@ -378,8 +369,8 @@
+                 />
+               </div>
+             </div>
+-            <div class="col-6 tx">
+-              <h2>Outils sur mesure</h2>
++            <div class="col-6 tx scr">
++              <h2>Outils <span class="hl">sur mesure</span></h2>
+               <h3 class="sub">
+                 Une carte interactive et un annuaire que vos équipes mettent à
+                 jour seules
+@@ -425,8 +416,8 @@
+                 />
+               </div>
+             </div>
+-            <div class="col-6 tx">
+-              <h2>Sites web</h2>
++            <div class="col-6 tx scr">
++              <h2>Sites <span class="hl">web</span></h2>
+               <h3 class="sub">
+                 Des sites rapides, accessibles et faciles à faire vivre
+               </h3>
+@@ -483,8 +474,8 @@
+                 </video>
+               </div>
+             </div>
+-            <div class="col-6 tx">
+-              <h2>Automatisation et pipelines avec IA</h2>
++            <div class="col-6 tx scr">
++              <h2><span class="hl">Automatisation</span> et pipelines avec IA</h2>
+               <h3 class="sub">
+                 Un pipeline qui travaille à votre place, avec une personne qui
+                 valide
+@@ -531,8 +522,8 @@
+                 />
+               </div>
+             </div>
+-            <div class="col-6 tx">
+-              <h2>Conformité RGPD</h2>
++            <div class="col-6 tx scr">
++              <h2>Conformité <span class="hl">RGPD</span></h2>
+               <h3 class="sub">
+                 La conformité intégrée dans vos outils, pas ajoutée après coup
+               </h3>
+@@ -560,7 +551,7 @@
+ 
+       <section id="realisations" class="blk alt">
+         <div class="container">
+-          <h2>Nos réalisations</h2>
++          <h2>Nos <span class="hl">réalisations</span></h2>
+           <div class="row cards g-4 mt-1">
+             <div class="col-md-4">
+               <article class="rea">
+@@ -661,8 +652,8 @@
+                 />
+               </div>
+             </div>
+-            <div class="col-7 tx">
+-              <h2>Qui sommes-nous ?</h2>
++            <div class="col-7 tx scr">
++              <h2>Qui sommes-<span class="hl">nous</span> ?</h2>
+               <h3 class="sub">
+                 Plus qu’un prestataire technique : un partenaire pour vos
+                 données et vos outils
+@@ -683,7 +674,7 @@
+             </div>
+           </div>
+ 
+-          <h3 class="st p mt-5 mb-3">Nos valeurs</h3>
++          <h3 class="st mt-5 mb-3">Nos <span class="hl">valeurs</span></h3>
+           <div class="row cards g-4">
+             <div class="col-md-4">
+               <article class="rea">
+@@ -714,7 +705,7 @@
+             </div>
+           </div>
+ 
+-          <h3 class="st mt-5 mb-3">Notre parcours</h3>
++          <h3 class="st mt-5 mb-3">Notre <span class="hl">parcours</span></h3>
+           <p>
+             PELIFY est portée par Corneille Ehou, étudiant en Master TIC
+             appliquées au développement des territoires touristiques (ISTHIA,
+@@ -748,8 +739,8 @@
+                 />
+               </div>
+             </div>
+-            <div class="col-7">
+-              <h2>Questions fréquentes</h2>
++            <div class="col-7 scr">
++              <h2>Questions <span class="hl">fréquentes</span></h2>
+               <details>
+                 <summary>Que peut-on automatiser ?</summary>
+                 <p>
+@@ -789,7 +780,10 @@
+     <footer id="contact">
+       <div class="container">
+         <div class="cta">
+-          <h2>Parlons de la tâche que vous aimeriez ne plus faire à la main</h2>
++          <h2>
++            Parlons de la tâche que vous aimeriez ne plus faire
++            <span class="hl">à la main</span>
++          </h2>
+           <p>
+             Décrivez-nous qui saisit quoi, dans quel fichier, avec quelles
+             données personnelles. Nous répondons avec une première piste et un
