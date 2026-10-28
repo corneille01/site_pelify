@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accessibilité | PELIFY</title>
+    <meta
+      name="description"
+      content="Déclaration d’accessibilité volontaire de pelify.app : état de conformité, mesures en place, points à améliorer et contact."
+    />
+    <meta name="author" content="Corneille Ehou" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pelify.app/accessibilite.html" />
+    <link rel="icon" type="image/svg+xml" href="img/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <header>
+      <nav
+        class="navbar navbar-expand-lg sticky-top"
+        aria-label="Navigation principale"
+      >
+        <div class="container">
+          <a class="brand" href="index.html" aria-label="PELIFY, accueil"
+            ><img src="img/logo-mark.svg" width="48" height="48" alt="" /><span
+              class="bt"
+              ><b>PELIFY</b
+              ><small
+                >Conseil en systèmes et logiciels informatiques</small
+              ></span
+            ></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+            aria-controls="menu"
+            aria-expanded="false"
+            aria-label="Ouvrir le menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html#qui-sommes-nous"
+                  >Découvrir PELIFY</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >Prestations</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="index.html#outils"
+                      >Outils sur mesure</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="index.html#piton"
+                      >Sites web</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="index.html#automatisation"
+                      >Automatisation</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="index.html#rgpd"
+                      >Conformité RGPD</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html#realisations"
+                  >Réalisations phares</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <div class="container">
+        <div class="page">
+          <h1><span class="hl">Accessibilité</span></h1>
+          <p>
+            PELIFY s’engage à rendre le site <strong>pelify.app</strong>
+            utilisable par le plus grand nombre, y compris par les personnes en
+            situation de handicap. Cette déclaration est publiée à titre
+            volontaire : le site d’une micro-entreprise n’entre pas dans le
+            champ des organismes soumis à l’obligation de déclaration
+            d’accessibilité du RGAA (secteur public et grandes entreprises).
+          </p>
+          <p><small>Déclaration établie le 28 octobre 2026.</small></p>
+
+          <h2>1. État de conformité</h2>
+          <p>
+            Le site n’a pas fait l’objet d’un audit de conformité au RGAA
+            (Référentiel général d’amélioration de l’accessibilité). Son niveau
+            de conformité n’est donc <strong>pas évalué</strong>. L’objectif est
+            de tendre vers le niveau AA des règles WCAG 2.1.
+          </p>
+
+          <h2>2. Mesures déjà mises en place</h2>
+          <ul>
+            <li>
+              Langue de la page déclarée (français) et titre de page explicite.
+            </li>
+            <li>Lien d’évitement « Aller au contenu » en début de page.</li>
+            <li>
+              Structure en zones identifiées (en-tête, navigation, contenu
+              principal, pied de page) et hiérarchie de titres.
+            </li>
+            <li>
+              Alternatives textuelles pour les illustrations porteuses de sens.
+            </li>
+            <li>
+              Navigation possible au clavier, avec indicateur de focus visible.
+            </li>
+            <li>
+              Carrousel de la page d’accueil : boutons précédent / suivant,
+              indicateurs nommés et bouton « Mettre en pause ». Le défilement
+              automatique est désactivé si votre système demande de réduire les
+              animations.
+            </li>
+            <li>
+              Liens s’ouvrant dans un nouvel onglet signalés aux lecteurs
+              d’écran.
+            </li>
+            <li>
+              Tailles de texte relatives et mise en page adaptée aux petits
+              écrans.
+            </li>
+            <li>
+              Questions fréquentes en éléments natifs dépliables (details /
+              summary).
+            </li>
+          </ul>
+
+          <h2>3. Points connus à améliorer</h2>
+          <ul>
+            <li>
+              Le texte des sections est justifié sur grand écran, ce qui peut
+              gêner la lecture de certaines personnes (dyslexie notamment).
+            </li>
+            <li>
+              Sur petit écran, certains textes défilent dans un cadre à hauteur
+              limitée ; l’accès à ces zones au clavier reste à améliorer.
+            </li>
+            <li>
+              La carte interactive du pied de page n’a pas été testée avec tous
+              les lecteurs d’écran. L’adresse est fournie en texte juste à côté.
+            </li>
+            <li>
+              La vidéo explicative de la plateforme est en cours d’ajout ; des
+              sous-titres en français sont prévus.
+            </li>
+            <li>
+              Les sites tiers vers lesquels nous renvoyons ne relèvent pas de
+              cette déclaration.
+            </li>
+          </ul>
+
+          <h2>4. Méthode</h2>
+          <p>
+            Cette déclaration repose sur une revue interne réalisée par
+            l’éditeur, sans audit externe. Un audit RGAA pourra être envisagé
+            ultérieurement ; la déclaration sera alors mise à jour.
+          </p>
+
+          <h2>5. Signaler un problème</h2>
+          <p>
+            Si vous rencontrez une difficulté pour accéder à un contenu ou à une
+            fonctionnalité, ou si vous souhaitez obtenir une information dans un
+            autre format, écrivez-nous en précisant la page concernée et votre
+            situation :
+          </p>
+          <ul>
+            <li>
+              E-mail :
+              <a
+                href="mailto:contact@pelify.app?subject=Accessibilit%C3%A9%20du%20site"
+                >contact@pelify.app</a
+              >
+            </li>
+            <li>
+              Téléphone : <a href="tel:+33780791811">+33 7 80 79 18 11</a>
+            </li>
+            <li>Courrier : PELIFY, 13 avenue Lafagette, 09000 Foix</li>
+          </ul>
+
+          <h2>6. Voies de recours</h2>
+          <p>
+            Si vous n’obtenez pas de réponse satisfaisante, vous pouvez saisir
+            le Défenseur des droits :
+            <a
+              href="https://www.defenseurdesdroits.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              >defenseurdesdroits.fr<span class="visually-hidden">
+                (nouvel onglet)</span
+              ></a
+            >.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer id="contact">
+      <div class="container">
+        <div class="cols row g-5">
+          <div class="col-12 col-lg-6">
+            <a
+              class="brand mb-3"
+              href="index.html"
+              aria-label="PELIFY, retour à l’accueil"
+              ><img
+                src="img/logo-mark.svg"
+                width="48"
+                height="48"
+                alt=""
+              /><span class="bt"
+                ><b>PELIFY</b
+                ><small
+                  >Conseil en systèmes et logiciels informatiques</small
+                ></span
+              ></a
+            >
+            <address>
+              <strong>PELIFY</strong><br />13 avenue Lafagette<br />09000
+              Foix<br /><a href="mailto:contact@pelify.app"
+                >contact@pelify.app</a
+              >
+              · <a href="tel:+33780791811">+33 7 80 79 18 11</a>
+            </address>
+          </div>
+          <div class="col-6 col-lg-3">
+            <h3>Navigation</h3>
+            <ul>
+              <li>
+                <a href="index.html#qui-sommes-nous">Qui sommes-nous ?</a>
+              </li>
+              <li><a href="index.html#outils">Nos prestations</a></li>
+              <li><a href="index.html#realisations">Nos réalisations</a></li>
+              <li><a href="index.html#faq">Questions fréquentes</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-3">
+            <h3>Prestations</h3>
+            <ul>
+              <li><a href="index.html#outils">Outils sur mesure</a></li>
+              <li><a href="index.html#piton">Sites web</a></li>
+              <li><a href="index.html#automatisation">Automatisation</a></li>
+              <li><a href="index.html#rgpd">Conformité RGPD</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="legal">
+          <nav aria-label="Informations légales">
+            <ul class="legal-links">
+              <li><a href="mentions-legales.html">Mentions légales</a></li>
+              <li>
+                <a href="politique-de-confidentialite.html"
+                  >Politique de confidentialité</a
+                >
+              </li>
+              <li><a href="cookies.html">Cookies</a></li>
+              <li><a href="accessibilite.html">Accessibilité</a></li>
+              <li><a href="plan-du-site.html">Plan du site</a></li>
+            </ul>
+          </nav>
+          <p class="mb-0">
+            © 2026 PELIFY, micro-entreprise de Corneille Ehou · SIRET : à
+            compléter · Hébergement : Netlify
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
