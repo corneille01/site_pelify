@@ -2,6 +2,8 @@
   "use strict";
   var el = document.getElementById("hero"),
     btn = document.getElementById("pause");
+
+  // Pause / reprise du carrousel
   if (el && btn && window.bootstrap) {
     var c = bootstrap.Carousel.getOrCreateInstance(el),
       run = true;
@@ -18,6 +20,33 @@
       set(!run);
     });
   }
+
+  // Même hauteur pour les 3 slides
+  if (el) {
+    var items = el.querySelectorAll(".carousel-item");
+    var equalize = function () {
+      var h = 0;
+      items.forEach(function (i) {
+        i.style.minHeight = "";
+      });
+      items.forEach(function (i) {
+        var d = i.style.display;
+        i.style.display = "block";
+        h = Math.max(h, i.offsetHeight);
+        i.style.display = d;
+      });
+      items.forEach(function (i) {
+        i.style.minHeight = h + "px";
+      });
+    };
+    window.addEventListener("load", equalize);
+    window.addEventListener("resize", equalize);
+    if (document.fonts && document.fonts.ready)
+      document.fonts.ready.then(equalize);
+    equalize();
+  }
+
+  // Fermeture du menu mobile après un clic
   var nav = document.getElementById("menu");
   if (nav && window.bootstrap) {
     nav
@@ -31,10 +60,11 @@
         });
       });
   }
+
+  // Carte Leaflet du pied de page
   var m = document.getElementById("map");
   if (m && window.L) {
-    // Coordonnées approximatives du centre de Foix : à remplacer par celles du 13 avenue Lafayette
-    // (clic droit sur l'adresse dans OpenStreetMap ou Google Maps, puis « copier les coordonnées »).
+    // Coordonnées approximatives de Foix : à remplacer par celles du 13 avenue Lafayette.
     var LAT = 42.9625,
       LNG = 1.6075;
     var map = L.map(m, {
@@ -58,8 +88,9 @@
       title: "PELIFY, 13 avenue Lafayette, Foix",
     })
       .addTo(map)
-      .bindPopup(
-        "<strong>PELIFY</strong><br>13 avenue Lafayette<br>09000 Foix",
-      );
+      .bindPopup("<strong>PELIFY</strong><br>13 avenue Lafayette<br>09000 Foix");
+    setTimeout(function () {
+      map.invalidateSize();
+    }, 300);
   }
 })();
