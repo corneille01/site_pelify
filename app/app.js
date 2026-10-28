@@ -85,10 +85,10 @@
         iconAnchor: [17, 17],
       }),
       keyboard: true,
-      title: "PELIFY, 13 avenue Lafayette, Foix",
+      title: "PELIFY, 13 avenue Lafagette, Foix",
     })
       .addTo(map)
-      .bindPopup("<strong>PELIFY</strong><br>13 avenue Lafayette<br>09000 Foix");
+      .bindPopup("<strong>PELIFY</strong><br>13 avenue Lafagette<br>09000 Foix");
     setTimeout(function () {
       map.invalidateSize();
     }, 300);
