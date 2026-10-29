@@ -56,6 +56,6 @@ Allow: /
 
 # --- Tous les autres robots ---
 User-agent: *
-Allow: /
+Disallow: /
 
 Sitemap: https://pelify.app/sitemap.xml
