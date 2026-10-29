@@ -1,0 +1,30 @@
+# PELIFY
+
+> PELIFY est une micro-entreprise de conseil en systèmes et logiciels informatiques, basée à Foix (Ariège, Occitanie) et fondée par Corneille Ehou. Elle conçoit des applications web sur mesure, des cartes interactives, des API REST, automatise les tâches répétitives (Python, PHP) et accompagne la mise en conformité RGPD des TPE, PME, associations et collectivités. Intervention à distance partout en France et sur site en Occitanie.
+
+## Prestations
+
+- [Outils numériques sur mesure](https://pelify.app/#outils): application web, carte interactive Leaflet et QGIS, back-office sécurisé, API REST, base MySQL.
+- [Création et refonte de sites web](https://pelify.app/#piton): sites vitrines et institutionnels en HTML5, CSS, JavaScript, PHP, MySQL, accessibles (WCAG) et bien référencés.
+- [Automatisation et pipelines avec IA](https://pelify.app/#automatisation): imports planifiés, contrôle qualité, rapports automatiques, IA limitée à des brouillons relus par un humain.
+- [Conformité RGPD](https://pelify.app/#rgpd): registre des traitements, analyse d'impact (AIPD), durées de conservation, consentement, politique de confidentialité. PELIFY ne remplace ni un DPO désigné ni un avocat.
+
+## Réalisations
+
+- [Carte web et annuaire du GIS CIMES (ISTHIA)](https://frhb10946ds.ikexpress.com/~ehou/stage/cimes_clients/): carte Leaflet filtrable, formulaire relié à MySQL, back-office sécurisé.
+- [Sites du projet européen POCTEFA PITON](https://ta2d.univ-tlse2.fr/): refonte de sites HTML5, PHP, MySQL avec gestion des contenus.
+- [Pelify, lieux de tournage en Occitanie](https://tournage.pelify.app): plateforme cartographique avec pipeline assisté par IA et cache multi-niveaux.
+
+## À propos
+
+- [Qui sommes-nous ?](https://pelify.app/#qui-sommes-nous): Corneille Ehou, Master TIC appliquées au développement des territoires touristiques (ISTHIA, Université Toulouse Jean Jaurès), major de promotion en première année, sélectionné parmi les 27 Talents du tourisme en Occitanie 2026.
+- [Questions fréquentes](https://pelify.app/#faq)
+- Contact : contact@pelify.app · +33 7 80 79 18 11 · 13 avenue Lafagette, 09000 Foix
+
+## Informations légales
+
+- [Mentions légales](https://pelify.app/mentions-legales.html)
+- [Politique de confidentialité](https://pelify.app/politique-de-confidentialite.html)
+- [Cookies](https://pelify.app/cookies.html)
+- [Accessibilité](https://pelify.app/accessibilite.html)
+- [Plan du site](https://pelify.app/plan-du-site.html)

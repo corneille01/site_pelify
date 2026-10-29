@@ -1,0 +1,61 @@
+# robots.txt de https://pelify.app/
+# Tous les moteurs de recherche et assistants IA sont les bienvenus.
+
+# --- Moteurs de recherche classiques ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# --- Assistants et moteurs de réponse IA ---
+# ChatGPT / OpenAI : indexation pour la recherche, navigation à la demande, entraînement
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Perplexity : indexation et navigation à la demande
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google Gemini / IA Google (Google-Extended n'affecte pas le classement Google Search)
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft Copilot s'appuie sur Bingbot (autorisé ci-dessus)
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Tous les autres robots ---
+User-agent: *
+Allow: /
+
+Sitemap: https://pelify.app/sitemap.xml

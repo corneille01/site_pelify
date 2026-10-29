@@ -4,40 +4,78 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-      PELIFY | Développeur freelance en Occitanie : outils sur mesure,
-      automatisation, RGPD
+      Développeur freelance Occitanie | Application web, automatisation, RGPD
+      – PELIFY
     </title>
     <meta
       name="description"
-      content="Freelance à Foix (Ariège, Occitanie) : application web sur mesure, cartographie interactive, API REST, automatisation Python et mise en conformité RGPD pour TPE, PME, associations et collectivités."
+      content="Développeur freelance à Foix (Ariège, Occitanie) : application web sur mesure, site web, cartographie interactive, API REST, automatisation Python et conformité RGPD pour TPE, PME, associations et collectivités."
     />
     <meta
       name="keywords"
-      content="développeur freelance Occitanie, application web sur mesure, automatisation de tâches, conformité RGPD TPE PME, cartographie web Leaflet, API REST, Python, Ariège, Foix, Toulouse"
+      content="développeur freelance Occitanie, développeur web Foix, développeur freelance Toulouse, application web sur mesure, création site web Ariège, automatisation de tâches, automatisation Python, conformité RGPD TPE PME, accompagnement RGPD, cartographie web Leaflet, API REST, Ariège, Foix, Toulouse, Pamiers"
     />
     <meta name="author" content="Corneille Ehou" />
+    <meta name="publisher" content="PELIFY" />
+    <meta name="theme-color" content="#050508" />
+    <meta name="geo.region" content="FR-09" />
+    <meta name="geo.placename" content="Foix" />
     <meta
       name="robots"
-      content="index, follow, max-snippet:-1, max-image-preview:large"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
     <link rel="canonical" href="https://pelify.app/" />
+    <link rel="alternate" hreflang="fr" href="https://pelify.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://pelify.app/" />
+    <link
+      rel="sitemap"
+      type="application/xml"
+      title="Plan du site"
+      href="https://pelify.app/sitemap.xml"
+    />
     <link rel="icon" type="image/svg+xml" href="img/logo-mark.svg" />
+    <link rel="apple-touch-icon" href="img/logo-pelify-512.png" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PELIFY" />
     <meta property="og:locale" content="fr_FR" />
     <meta
       property="og:title"
-      content="PELIFY | Outils numériques sur mesure, automatisation et RGPD"
+      content="PELIFY | Développeur freelance en Occitanie : web sur mesure, automatisation, RGPD"
     />
     <meta
       property="og:description"
-      content="Nous concevons les outils, automatisons les tâches répétitives et sécurisons vos données personnelles. Freelance en Occitanie."
+      content="Nous concevons les outils, automatisons les tâches répétitives et sécurisons vos données personnelles. Freelance à Foix, en Ariège."
     />
     <meta property="og:url" content="https://pelify.app/" />
     <meta
       property="og:image"
-      content="https://pelify.app/img/logo-carre-sombre.png"
+      content="https://pelify.app/img/og-pelify.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="PELIFY, développeur freelance en Occitanie : applications web, automatisation et RGPD"
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="PELIFY | Développeur freelance en Occitanie"
+    />
+    <meta
+      name="twitter:description"
+      content="Application web sur mesure, automatisation de tâches et conformité RGPD pour TPE, PME, associations et collectivités."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pelify.app/img/og-pelify.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="PELIFY, développeur freelance en Occitanie"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -62,12 +100,71 @@
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "ProfessionalService",
+            "@type": "WebSite",
+            "@id": "https://pelify.app/#website",
+            "url": "https://pelify.app/",
+            "name": "PELIFY",
+            "description": "Développeur freelance en Occitanie : applications web sur mesure, automatisation de tâches et conformité RGPD.",
+            "inLanguage": "fr-FR",
+            "publisher": {
+              "@id": "https://pelify.app/#org"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://pelify.app/#webpage",
+            "url": "https://pelify.app/",
+            "name": "Développeur freelance en Occitanie : application web, automatisation, RGPD | PELIFY",
+            "isPartOf": {
+              "@id": "https://pelify.app/#website"
+            },
+            "about": {
+              "@id": "https://pelify.app/#org"
+            },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://pelify.app/img/og-pelify.png",
+              "width": 1200,
+              "height": 630
+            },
+            "inLanguage": "fr-FR",
+            "dateModified": "2026-10-29",
+            "breadcrumb": {
+              "@id": "https://pelify.app/#breadcrumb"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://pelify.app/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://pelify.app/"
+              }
+            ]
+          },
+          {
+            "@type": [
+              "ProfessionalService",
+              "LocalBusiness"
+            ],
             "@id": "https://pelify.app/#org",
             "name": "PELIFY",
-            "description": "Conseil en systèmes et logiciels informatiques : applications web sur mesure, cartographie interactive, automatisation de tâches, conformité RGPD.",
+            "alternateName": "PELIFY, conseil en systèmes et logiciels informatiques",
+            "description": "Développeur freelance en Occitanie : conseil en systèmes et logiciels informatiques, applications web sur mesure, cartographie interactive, automatisation de tâches, conformité RGPD.",
             "url": "https://pelify.app/",
-            "logo": "https://pelify.app/img/logo-carre-clair.png",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://pelify.app/img/logo-pelify-512.png",
+              "width": 512,
+              "height": 512
+            },
+            "image": [
+              "https://pelify.app/img/og-pelify.png",
+              "https://pelify.app/img/corneille_ehou_pelify.png"
+            ],
             "email": "contact@pelify.app",
             "telephone": "+33780791811",
             "address": {
@@ -75,31 +172,146 @@
               "streetAddress": "13 avenue Lafagette",
               "addressLocality": "Foix",
               "postalCode": "09000",
+              "addressRegion": "Occitanie",
               "addressCountry": "FR"
             },
-            "areaServed": ["Occitanie", "France"],
+            "areaServed": [
+              {
+                "@type": "AdministrativeArea",
+                "name": "Occitanie"
+              },
+              {
+                "@type": "Country",
+                "name": "France"
+              }
+            ],
+            "audience": {
+              "@type": "BusinessAudience",
+              "name": "TPE, PME, associations et collectivités"
+            },
             "founder": {
-              "@type": "Person",
-              "name": "Corneille Ehou",
-              "jobTitle": "Consultant en systèmes et logiciels informatiques",
-              "alumniOf": "Université Toulouse Jean Jaurès (ISTHIA)"
+              "@id": "https://pelify.app/#person"
             },
             "knowsAbout": [
               "Développement web",
+              "Application web sur mesure",
               "Cartographie web",
               "API REST",
-              "Automatisation",
+              "Automatisation de tâches",
               "RGPD",
               "Python",
               "PHP",
               "MySQL",
               "QGIS",
-              "Leaflet"
+              "Leaflet",
+              "Accessibilité WCAG"
             ],
-            "sameAs": ["https://tournage.pelify.app"]
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Prestations PELIFY",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Outils numériques sur mesure",
+                    "description": "Application web, carte interactive Leaflet et QGIS, back-office sécurisé, API REST et base MySQL documentées.",
+                    "url": "https://pelify.app/#outils",
+                    "provider": {
+                      "@id": "https://pelify.app/#org"
+                    },
+                    "areaServed": [
+                      "Occitanie",
+                      "France"
+                    ]
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Création et refonte de sites web",
+                    "description": "Sites vitrines et institutionnels en HTML5, CSS, JavaScript, PHP et MySQL, accessibles (WCAG) et optimisés pour le référencement.",
+                    "url": "https://pelify.app/#piton",
+                    "provider": {
+                      "@id": "https://pelify.app/#org"
+                    },
+                    "areaServed": [
+                      "Occitanie",
+                      "France"
+                    ]
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Automatisation de tâches et pipelines avec IA",
+                    "description": "Imports planifiés, contrôle qualité automatique, rapports et tableaux de bord générés depuis la base de données.",
+                    "url": "https://pelify.app/#automatisation",
+                    "provider": {
+                      "@id": "https://pelify.app/#org"
+                    },
+                    "areaServed": [
+                      "Occitanie",
+                      "France"
+                    ]
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Conformité RGPD",
+                    "description": "Registre des traitements, analyse d’impact (AIPD), durées de conservation, consentement, politique de confidentialité.",
+                    "url": "https://pelify.app/#rgpd",
+                    "provider": {
+                      "@id": "https://pelify.app/#org"
+                    },
+                    "areaServed": [
+                      "Occitanie",
+                      "France"
+                    ]
+                  }
+                }
+              ]
+            },
+            "sameAs": [
+              "https://tournage.pelify.app"
+            ]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://pelify.app/#person",
+            "name": "Corneille Ehou",
+            "jobTitle": "Consultant en systèmes et logiciels informatiques, développeur freelance",
+            "image": "https://pelify.app/img/corneille_ehou_pelify.png",
+            "url": "https://pelify.app/#qui-sommes-nous",
+            "worksFor": {
+              "@id": "https://pelify.app/#org"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Université Toulouse Jean Jaurès (ISTHIA)"
+            },
+            "knowsAbout": [
+              "HTML5",
+              "CSS3",
+              "JavaScript",
+              "PHP",
+              "Python",
+              "FastAPI",
+              "MySQL",
+              "QGIS",
+              "Leaflet",
+              "API REST",
+              "RGPD",
+              "Accessibilité WCAG"
+            ]
           },
           {
             "@type": "FAQPage",
+            "@id": "https://pelify.app/#faq-schema",
             "mainEntity": [
               {
                 "@type": "Question",
@@ -131,6 +343,38 @@
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "À distance partout en France, et sur site en Occitanie, depuis Foix en Ariège."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "PELIFY travaille-t-il avec des TPE, des associations et des collectivités ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Oui. PELIFY accompagne les TPE, PME, associations et collectivités qui veulent remplacer des fichiers éparpillés par un outil numérique simple, documenté et que leurs équipes peuvent reprendre."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Comment démarrer un projet d’application web sur mesure avec PELIFY ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Il suffit de décrire qui saisit quoi, dans quel fichier et avec quelles données personnelles, par e-mail à contact@pelify.app ou par téléphone. PELIFY répond avec une première piste et un ordre de grandeur de délai."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Le code et la documentation sont-ils transmis au client ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Oui. Chaque outil est livré avec un code documenté et transmis, pour que l’équipe du client puisse le faire évoluer ou le confier à un autre prestataire."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "PELIFY utilise-t-il l’intelligence artificielle ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "De façon encadrée : les chiffres proviennent toujours des données, et l’IA se limite à la rédaction de brouillons relus par une personne."
                 }
               }
             ]
@@ -244,13 +488,14 @@
                 <div class="row g-3 g-md-4 g-lg-5 align-items-center">
                   <div class="col-6 tx scr">
                     <h1>
-                      Des outils numériques <span class="hl">sur mesure</span>
+                      Développeur freelance en Occitanie :
+                      <span class="hl">outils sur mesure</span>
                     </h1>
                     <p class="lead sb">
-                      Freelance en Occitanie, nous concevons votre application
-                      web, carte interactive, base de données et back-office :
-                      nous remplaçons vos fichiers éparpillés par un outil
-                      simple que votre équipe adopte.
+                      Depuis Foix, en Ariège, nous concevons votre application
+                      web sur mesure, carte interactive, base de données et
+                      back-office : nous remplaçons vos fichiers éparpillés par
+                      un outil simple que votre équipe adopte.
                     </p>
                     <div class="acts">
                       <a class="btn-p" href="#outils"
@@ -264,7 +509,7 @@
                         src="img/illu-outils.svg"
                         width="800"
                         height="520"
-                        alt="Aperçu d’une carte interactive et d’un tableau de bord conçus sur mesure"
+                        alt="Aperçu d’une carte interactive et d’un tableau de bord d’application web conçus sur mesure par PELIFY, développeur freelance en Occitanie"
                       />
                     </div>
                   </div>
@@ -281,9 +526,10 @@
                       <span class="hl">automatisées</span>
                     </p>
                     <p class="lead sb">
-                      Automatisation Python et PHP : un formulaire, un fichier
-                      CSV ou un export arrive, il est contrôlé, nettoyé et
-                      enregistré sans copier-coller.
+                      Automatisation de tâches avec Python et PHP : un
+                      formulaire, un fichier CSV ou un export arrive, il est
+                      contrôlé, nettoyé et enregistré dans votre base de
+                      données sans copier-coller.
                     </p>
                     <div class="acts">
                       <a class="btn-p" href="#automatisation"
@@ -297,7 +543,7 @@
                         src="img/illu-pipeline.svg"
                         width="800"
                         height="520"
-                        alt="Schéma d’un pipeline : collecte, contrôle, base de données, restitution"
+                        alt="Schéma d’un pipeline d’automatisation de tâches : collecte, contrôle, base de données, restitution"
                       />
                     </div>
                   </div>
@@ -313,9 +559,10 @@
                       Vos données, conformes au <span class="hl">RGPD</span>
                     </p>
                     <p class="lead sb">
-                      Conformité RGPD opérationnelle : registre des traitements,
-                      analyse d’impact, durées de conservation, consentement.
-                      Des documents et des outils prêts à présenter à la CNIL.
+                      Accompagnement RGPD pour TPE, PME, associations et
+                      collectivités : registre des traitements, analyse
+                      d’impact, durées de conservation, consentement. Des
+                      documents et des outils prêts à présenter à la CNIL.
                     </p>
                     <div class="acts">
                       <a class="btn-p" href="#rgpd"
@@ -329,7 +576,7 @@
                         src="img/illu-rgpd.svg"
                         width="800"
                         height="520"
-                        alt="Illustration d’un bouclier et d’un cadenas de protection des données"
+                        alt="Illustration d’un bouclier et d’un cadenas : protection des données personnelles et conformité RGPD"
                       />
                     </div>
                   </div>
@@ -381,24 +628,26 @@
                   width="800"
                   height="520"
                   loading="lazy"
-                  alt="Carte web et annuaire de partenaires du GIS CIMES"
+                  alt="Carte web interactive Leaflet et annuaire de partenaires du GIS CIMES (ISTHIA), application web sur mesure"
                 />
               </div>
             </div>
             <div class="col-6 tx scr">
-              <h2>Outils <span class="hl">sur mesure</span></h2>
+              <h2>Outils numériques <span class="hl">sur mesure</span></h2>
               <h3 class="sub">
-                Une carte interactive et un annuaire que vos équipes mettent à
-                jour seules
+                Application web, carte interactive et annuaire que vos équipes
+                mettent à jour seules
               </h3>
               <div class="sb">
                 <p>
-                  Pour le GIS CIMES (ISTHIA), nous avons conçu une carte Leaflet
-                  qui filtre projets, partenaires et territoires, alimentée
-                  automatiquement par un formulaire.
+                  Une application web sur mesure remplace les tableurs, les
+                  e-mails et les fichiers partagés par un outil unique, adapté à
+                  votre métier. Pour le GIS CIMES (ISTHIA), nous avons conçu une
+                  carte Leaflet qui filtre projets, partenaires et territoires,
+                  alimentée automatiquement par un formulaire.
                 </p>
                 <ul class="chk">
-                  <li>Carte filtrable (Leaflet, QGIS) et parcours</li>
+                  <li>Cartographie web filtrable (Leaflet, QGIS) et parcours</li>
                   <li>
                     Back-office sécurisé : sessions, droits, ajout et
                     modification sans code
@@ -430,20 +679,23 @@
                   width="800"
                   height="520"
                   loading="lazy"
-                  alt="Aperçu des sites du projet européen POCTEFA PITON"
+                  alt="Aperçu des sites web du projet européen POCTEFA PITON, refonte et création de sites institutionnels"
                 />
               </div>
             </div>
             <div class="col-6 tx scr">
-              <h2>Sites <span class="hl">web</span></h2>
+              <h2>Création de sites <span class="hl">web</span></h2>
               <h3 class="sub">
-                Des sites rapides, accessibles et faciles à faire vivre
+                Des sites rapides, accessibles et bien référencés, faciles à
+                faire vivre
               </h3>
               <div class="sb">
                 <p>
                   Pour le projet européen POCTEFA PITON, nous avons refondu des
                   sites en HTML5, CSS et JavaScript avec un back-end PHP, une
-                  base MySQL et un espace de gestion des contenus.
+                  base MySQL et un espace de gestion des contenus. Chaque site
+                  est pensé pour le référencement naturel (SEO) : structure de
+                  titres claire, balises, plan du site et données structurées.
                 </p>
                 <ul class="chk">
                   <li>
@@ -451,7 +703,8 @@
                   </li>
                   <li>Gestion des contenus sans toucher au code</li>
                   <li>
-                    Bonnes pratiques d’accessibilité (WCAG) et de référencement
+                    Accessibilité (WCAG) et référencement naturel (SEO) pour
+                    Google, Bing et les assistants IA
                   </li>
                 </ul>
               </div>
@@ -496,7 +749,8 @@
             </div>
             <div class="col-6 tx scr">
               <h2>
-                <span class="hl">Automatisation</span> et pipelines avec IA
+                <span class="hl">Automatisation</span> de tâches et pipelines
+                avec IA
               </h2>
               <h3 class="sub">
                 Un pipeline qui travaille à votre place, avec une personne qui
@@ -504,10 +758,12 @@
               </h3>
               <div class="sb">
                 <p>
-                  Notre plateforme Pelify identifie des lieux de tournage en
-                  Occitanie et les place sur une carte, avec un système de cache
-                  pour maîtriser les coûts. Cette logique s’adapte à vos données
-                  : collecte, contrôle, enrichissement, restitution.
+                  L’automatisation supprime les ressaisies et les copier-coller
+                  qui font perdre du temps à une petite structure. Notre
+                  plateforme Pelify identifie des lieux de tournage en Occitanie
+                  et les place sur une carte, avec un système de cache pour
+                  maîtriser les coûts. Cette logique s’adapte à vos données :
+                  collecte, contrôle, enrichissement, restitution.
                 </p>
                 <ul class="chk">
                   <li>Imports planifiés et contrôle qualité automatique</li>
@@ -542,20 +798,23 @@
                   width="800"
                   height="520"
                   loading="lazy"
-                  alt="Illustration d’un bouclier RGPD"
+                  alt="Illustration d’un bouclier RGPD : accompagnement à la conformité pour TPE, PME, associations et collectivités"
                 />
               </div>
             </div>
             <div class="col-6 tx scr">
-              <h2>Conformité <span class="hl">RGPD</span></h2>
+              <h2>Conformité et accompagnement <span class="hl">RGPD</span></h2>
               <h3 class="sub">
                 La conformité intégrée dans vos outils, pas ajoutée après coup
               </h3>
               <div class="sb">
                 <p>
-                  Nous documentons vos traitements de données personnelles et
-                  intégrons les exigences dès la conception : droits d’accès et
-                  de suppression, minimisation, durées de conservation.
+                  La mise en conformité RGPD d’une TPE, d’une PME, d’une
+                  association ou d’une collectivité commence par la
+                  documentation de vos traitements de données personnelles. Nous
+                  intégrons ensuite les exigences dès la conception : droits
+                  d’accès et de suppression, minimisation, durées de
+                  conservation.
                 </p>
                 <ul class="chk">
                   <li>Registre des traitements et analyse d’impact (AIPD)</li>
@@ -579,7 +838,7 @@
 
       <section id="realisations" class="blk alt">
         <div class="container">
-          <h2>réalisations <span class="hl">phares</span></h2>
+          <h2>Réalisations <span class="hl">phares</span></h2>
           <div class="row cards g-4 mt-1">
             <div class="col-md-4">
               <article class="rea">
@@ -589,7 +848,7 @@
                     width="800"
                     height="520"
                     loading="lazy"
-                    alt="Carte web et annuaire du GIS CIMES"
+                    alt="Carte web Leaflet et annuaire du GIS CIMES, réalisation PELIFY"
                   />
                 </div>
                 <h3>Carte web et annuaire, GIS CIMES</h3>
@@ -616,7 +875,7 @@
                     width="800"
                     height="520"
                     loading="lazy"
-                    alt="Sites du projet européen POCTEFA PITON"
+                    alt="Sites web du projet européen POCTEFA PITON, réalisation PELIFY"
                   />
                 </div>
                 <h3>Sites du projet européen PITON</h3>
@@ -643,7 +902,7 @@
                     width="800"
                     height="520"
                     loading="lazy"
-                    alt="Plateforme Pelify, lieux de tournage en Occitanie"
+                    alt="Plateforme cartographique Pelify des lieux de tournage en Occitanie, pipeline assisté par IA"
                   />
                 </div>
                 <h3>Pelify, lieux de tournage en Occitanie</h3>
@@ -676,7 +935,7 @@
                   width="600"
                   height="700"
                   loading="lazy"
-                  alt="Portrait de Corneille Ehou, fondateur de PELIFY"
+                  alt="Portrait de Corneille Ehou, fondateur de PELIFY et développeur freelance à Foix en Ariège"
                 />
               </div>
             </div>
@@ -689,7 +948,9 @@
               <div class="sb">
                 <p>
                   PELIFY est une micro-entreprise de conseil en systèmes et
-                  logiciels informatiques, basée à Foix, en Ariège. Notre
+                  logiciels informatiques, basée à Foix, en Ariège (Occitanie).
+                  Développeur freelance, nous intervenons à distance partout en
+                  France et sur site en Occitanie, de l’Ariège à Toulouse. Notre
                   mission : transformer vos données et vos processus en outils
                   numériques utiles, que vos équipes s’approprient, tout en
                   protégeant les données personnelles de vos utilisateurs.
@@ -765,7 +1026,7 @@
                   width="800"
                   height="520"
                   loading="lazy"
-                  alt="Illustration de questions fréquentes"
+                  alt="Illustration des questions fréquentes sur le développement web, l’automatisation et le RGPD"
                 />
               </div>
             </div>
@@ -773,33 +1034,51 @@
               <h2>Questions <span class="hl">fréquentes</span></h2>
               <div class="sb">
                 <details>
-                  <summary>Que peut-on automatiser ?</summary>
+                  <summary>Que peut-on automatiser dans une petite structure ?</summary>
                   <p>
-                    Les ressaisies entre formulaires, tableurs et bases de
-                    données, les imports de fichiers, le contrôle qualité et les
-                    rapports périodiques.
+                    Les ressaisies entre formulaires, tableurs et bases de données, les imports de fichiers, le contrôle qualité des données et la production de rapports périodiques, avec des scripts Python ou PHP et des API REST.
                   </p>
                 </details>
                 <details>
                   <summary>Faites-vous du RGPD ?</summary>
                   <p>
-                    Oui, côté opérationnel : registre, AIPD, consentement,
-                    durées de conservation. Nous n’agissons pas comme DPO
-                    désigné et ne donnons pas de conseil juridique.
+                    Oui, sur le plan opérationnel : registre des traitements, analyse d’impact (AIPD), minimisation des données, durées de conservation, politique de confidentialité et recueil du consentement. Nous n’agissons pas comme DPO désigné et ne donnons pas de conseil juridique.
                   </p>
                 </details>
                 <details>
                   <summary>Quelles technologies utilisez-vous ?</summary>
                   <p>
-                    HTML5, CSS3, JavaScript, PHP, Python (FastAPI), MySQL, API
-                    REST, Leaflet et QGIS.
+                    HTML5, CSS3, JavaScript, PHP, Python (FastAPI), MySQL, API REST, Leaflet et QGIS pour la cartographie.
                   </p>
                 </details>
                 <details>
                   <summary>Où intervenez-vous ?</summary>
                   <p>
-                    À distance partout en France, et sur site en Occitanie
-                    depuis Foix.
+                    À distance partout en France, et sur site en Occitanie, depuis Foix en Ariège.
+                  </p>
+                </details>
+                <details>
+                  <summary>Travaillez-vous avec des TPE, des associations et des collectivités ?</summary>
+                  <p>
+                    Oui. Nous accompagnons les TPE, PME, associations et collectivités qui veulent remplacer des fichiers éparpillés par un outil numérique simple, documenté et que leurs équipes peuvent reprendre.
+                  </p>
+                </details>
+                <details>
+                  <summary>Comment démarrer un projet d’application web sur mesure ?</summary>
+                  <p>
+                    Décrivez-nous qui saisit quoi, dans quel fichier et avec quelles données personnelles, par e-mail à contact@pelify.app ou par téléphone. Nous répondons avec une première piste et un ordre de grandeur de délai.
+                  </p>
+                </details>
+                <details>
+                  <summary>Le code et la documentation sont-ils transmis ?</summary>
+                  <p>
+                    Oui. Chaque outil est livré avec un code documenté et transmis, pour que votre équipe puisse le faire évoluer ou le confier à un autre prestataire.
+                  </p>
+                </details>
+                <details>
+                  <summary>Utilisez-vous l’intelligence artificielle ?</summary>
+                  <p>
+                    De façon encadrée : les chiffres proviennent toujours des données, et l’IA se limite à la rédaction de brouillons relus par une personne.
                   </p>
                 </details>
               </div>
@@ -848,7 +1127,8 @@
               ></a
             >
             <p>
-              Outils numériques sur mesure, automatisation de tâches et
+              Développeur freelance en Occitanie : outils numériques sur
+              mesure, création de sites web, automatisation de tâches et
               conformité RGPD pour TPE, PME, associations et collectivités.
             </p>
             <address>
