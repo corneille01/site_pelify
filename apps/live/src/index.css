@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  --f: "Montserrat", system-ui, sans-serif;
+  --primary: #00ffcc;
+  --primary-dark: #00d9ad;
+  --accent: #ff007f;
+  --bg: #050508;
+  --card: #0d0d14;
+  --text: #dde4f0;
+  color-scheme: dark;
+}
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--f);
+  font-variant-numeric: normal;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+button, input, select, textarea {
+  font-family: var(--f);
+}
+
+::selection {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+input, select, textarea {
+  color-scheme: dark;
+}
+
+/* Angles presque droits partout. */
+*, ::before, ::after {
+  border-radius: 2px !important;
+}
+
+/* Les ancres ne passent pas sous la barre fixe. */
+html {
+  scroll-padding-top: 9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* La fiche de passage s'imprime en noir sur blanc. */
+@media print {
+  html, body { background: #FFFFFF !important; color: #000000 !important; }
+  * { color: #000000 !important; background: #FFFFFF !important; border-color: #000000 !important; box-shadow: none !important; }
+  .no-print { display: none !important; }
+}

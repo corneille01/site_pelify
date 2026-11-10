@@ -19,8 +19,8 @@
       name="robots"
       content="index, follow, max-snippet:-1, max-image-preview:large"
     />
-    <link rel="canonical" href="https://pelify.app/studio.html" />
-    <link rel="icon" type="image/svg+xml" href="img/logo-mark.svg" />
+    <link rel="canonical" href="https://pelify.app/studio/" />
+    <link rel="icon" type="image/svg+xml" href="/img/logo-mark.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
     <meta
@@ -31,7 +31,7 @@
       property="og:description"
       content="Nous concevons les outils, automatisons les tâches répétitives et sécurisons vos données personnelles. Freelance en Occitanie."
     />
-    <meta property="og:url" content="https://pelify.app/studio.html" />
+    <meta property="og:url" content="https://pelify.app/studio/" />
     <meta
       property="og:image"
       content="https://pelify.app/img/logo-carre-sombre.png"
@@ -55,11 +55,11 @@
       integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@graph": [
+        "@graph": [{"@type": "Service", "name": "PELIFY STUDIO, création de sites web et d’applications", "provider": {"@id": "https://pelify.app/#org"}, "areaServed": ["France", "Togo"], "url": "https://pelify.app/studio/", "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Tarifs de départ", "itemListElement": [{"@type": "Offer", "name": "Site vitrine statique", "priceSpecification": {"@type": "PriceSpecification", "minPrice": 900, "priceCurrency": "EUR"}, "itemOffered": {"@type": "Service", "name": "Site vitrine statique"}}, {"@type": "Offer", "name": "Site vitrine dynamique", "priceSpecification": {"@type": "PriceSpecification", "minPrice": 1800, "priceCurrency": "EUR"}, "itemOffered": {"@type": "Service", "name": "Site vitrine dynamique"}}, {"@type": "Offer", "name": "Site e-commerce", "priceSpecification": {"@type": "PriceSpecification", "minPrice": 2900, "priceCurrency": "EUR"}, "itemOffered": {"@type": "Service", "name": "Site e-commerce"}}, {"@type": "Offer", "name": "Application web", "priceSpecification": {"@type": "PriceSpecification", "minPrice": 6000, "priceCurrency": "EUR"}, "itemOffered": {"@type": "Service", "name": "Application web"}}]}},{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "PELIFY", "item": "https://pelify.app/"}, {"@type": "ListItem", "position": 2, "name": "PELIFY Studio", "item": "https://pelify.app/studio/"}]},
           {
             "@type": "ProfessionalService",
             "@id": "https://pelify.app/#org",
@@ -138,84 +138,33 @@
       }
     </script>
   </head>
-  <body>
+  <body class="portal">
     <a class="skip" href="#contenu">Aller au contenu</a>
-    <header>
-      <nav
-        class="navbar navbar-expand-lg sticky-top"
-        aria-label="Navigation principale"
-      >
+        <header>
+      <nav class="navbar navbar-expand-lg sticky-top" aria-label="Navigation principale">
         <div class="container">
-          <a
-            class="brand"
-            href="index.html"
-            aria-label="PELIFY, tous les univers"
-            ><img src="img/logo-mark.svg" width="48" height="48" alt="" /><span
-              class="bt"
-              ><b>PELIFY</b
-              ><small
-                >Conseil en systèmes et logiciels informatiques</small
-              ></span
-            ></a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menu"
-            aria-controls="menu"
-            aria-expanded="false"
-            aria-label="Ouvrir le menu"
-          >
+          <a class="brand" href="/" aria-label="PELIFY, accueil">
+            <img src="/img/logo-mark.svg" width="48" height="48" alt="" />
+            <span class="bt"><b>PELIFY</b><small>Conseil en systèmes et logiciels informatiques</small></span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#univers"
-                  >Tous les univers</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#qui-sommes-nous">Découvrir PELIFY</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Prestations</a
-                >
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="#outils"
-                      >Outils sur mesure</a
-                    >
-                  </li>
-                  <li><a class="dropdown-item" href="#piton">Sites web</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#automatisation"
-                      >Automatisation</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#rgpd">Conformité RGPD</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#tarifs">Tarifs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#realisations">Réalisations phares</a>
-              </li>
+              <li class="nav-item"><a class="nav-link" href="/studio/" aria-current="page">Studio</a></li>
+              <li class="nav-item"><a class="nav-link" href="/arena/">Arena</a></li>
+              <li class="nav-item"><a class="nav-link" href="/screen/">Screen</a></li>
+              <li class="nav-item"><a class="nav-link" href="/insights/">Insights</a></li>
+              <li class="nav-item"><a class="nav-link" href="/market/">Market</a></li>
+              <li class="nav-item"><a class="nav-link" href="/studio/#tarifs">Tarifs</a></li>
+              <li class="nav-item ms-lg-2"><a class="btn-p nav-cta" href="/devis/">Devis gratuit</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
+    
 
     <main id="contenu">
       <section id="accueil" class="hero" aria-label="Présentation des services">
@@ -265,16 +214,16 @@
                     <div class="acts">
                       <a class="btn-p" href="#outils"
                         >Voir les outils sur mesure</a
-                      ><a class="btn-o" href="#contact">Décrire mon besoin</a>
+                      ><a class="btn-o" href="/devis/">Décrire mon besoin</a>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="media">
                       <img
-                        src="img/illu-outils.svg"
+                        src="/img/scene-studio.svg"
                         width="800"
-                        height="520"
-                        alt="Aperçu d’une carte interactive et d’un tableau de bord conçus sur mesure"
+                        height="600"
+                        alt="Une personne tient un téléphone et une tablette affiche un site vitrine en cours de création"
                       />
                     </div>
                   </div>
@@ -298,13 +247,13 @@
                     <div class="acts">
                       <a class="btn-p" href="#automatisation"
                         >Voir l’automatisation</a
-                      ><a class="btn-o" href="#contact">Parler de mes tâches</a>
+                      ><a class="btn-o" href="/devis/">Parler de mes tâches</a>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="media">
                       <img
-                        src="img/illu-pipeline.svg"
+                        src="/img/illu-pipeline.svg"
                         width="800"
                         height="520"
                         alt="Schéma d’un pipeline : collecte, contrôle, base de données, restitution"
@@ -330,13 +279,13 @@
                     <div class="acts">
                       <a class="btn-p" href="#rgpd"
                         >Voir l’accompagnement RGPD</a
-                      ><a class="btn-o" href="#contact">Faire le point</a>
+                      ><a class="btn-o" href="/devis/">Faire le point</a>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="media">
                       <img
-                        src="img/illu-rgpd.svg"
+                        src="/img/illu-rgpd.svg"
                         width="800"
                         height="520"
                         alt="Illustration d’un bouclier et d’un cadenas de protection des données"
@@ -387,7 +336,7 @@
             <div class="col-6">
               <div class="media">
                 <img
-                  src="img/illu-outils.svg"
+                  src="/img/illu-outils.svg"
                   width="800"
                   height="520"
                   loading="lazy"
@@ -436,7 +385,7 @@
             <div class="col-6">
               <div class="media">
                 <img
-                  src="img/illu-sites.svg"
+                  src="/img/illu-sites.svg"
                   width="800"
                   height="520"
                   loading="lazy"
@@ -488,13 +437,13 @@
                   controls
                   preload="metadata"
                   playsinline
-                  poster="img/illu-pipeline.svg"
+                  poster="/img/illu-pipeline.svg"
                   aria-label="Vidéo explicative de la plateforme Pelify"
                 >
-                  <source src="video/pelify-demo.mp4" type="video/mp4" />
+                  <source src="/video/pelify-demo.mp4" type="video/mp4" />
                   <track
                     kind="captions"
-                    src="video/pelify-demo.fr.vtt"
+                    src="/video/pelify-demo.fr.vtt"
                     srclang="fr"
                     label="Français"
                     default
@@ -548,7 +497,7 @@
             <div class="col-6">
               <div class="media">
                 <img
-                  src="img/illu-rgpd.svg"
+                  src="/img/illu-rgpd.svg"
                   width="800"
                   height="520"
                   loading="lazy"
@@ -579,11 +528,149 @@
                   Nous ne remplaçons ni un DPO désigné ni un avocat.
                 </p>
               </div>
-              <a class="btn-p" href="#contact"
+              <a class="btn-p" href="/devis/"
                 >Faire le point sur ma conformité</a
               >
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="tarifs" class="blk dark">
+        <div class="container">
+          <h2>Tarifs <span class="hl">clairs</span>, devis gratuit</h2>
+          <h3 class="sub">
+            Un prix de départ pour chaque type de projet, ajusté ensuite à
+            votre besoin
+          </h3>
+          <div class="row g-4 mt-1 price-grid">
+            <div class="col-md-6 col-lg-4">
+              <article class="price">
+                <h3>Site vitrine statique</h3>
+                <p class="amt"><span>dès</span> 900 €</p>
+                <p class="delay">Délai indicatif : 2 à 3 semaines</p>
+                <ul class="chk">
+                  <li>Jusqu’à 5 pages adaptées au mobile</li>
+                  <li>Formulaire de contact</li>
+                  <li>Référencement technique de base</li>
+                  <li>Mise en ligne et nom de domaine configuré</li>
+                </ul>
+                <a class="btn-p" href="/devis/?projet=statique">Demander un devis</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="price feat">
+                <span class="tag">Le plus demandé</span>
+                <h3>Site vitrine dynamique</h3>
+                <p class="amt"><span>dès</span> 1&nbsp;800 €</p>
+                <p class="delay">Délai indicatif : 3 à 5 semaines</p>
+                <ul class="chk">
+                  <li>Espace d’administration des contenus</li>
+                  <li>Actualités, galerie ou catalogue de services</li>
+                  <li>Formulaires avancés et base de données</li>
+                  <li>Accessibilité (WCAG) et performance</li>
+                </ul>
+                <a class="btn-p" href="/devis/?projet=dynamique">Demander un devis</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="price">
+                <h3>Site e-commerce</h3>
+                <p class="amt"><span>dès</span> 2&nbsp;900 €</p>
+                <p class="delay">Délai indicatif : 4 à 8 semaines</p>
+                <ul class="chk">
+                  <li>Catalogue, panier et paiement en ligne</li>
+                  <li>Gestion des commandes et des stocks</li>
+                  <li>Espace client</li>
+                  <li>Administration simple à prendre en main</li>
+                </ul>
+                <a class="btn-p" href="/devis/?projet=ecommerce">Demander un devis</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="price">
+                <h3>Application web</h3>
+                <p class="amt"><span>dès</span> 6&nbsp;000 €</p>
+                <p class="delay">Sur devis, après un échange sur vos besoins</p>
+                <ul class="chk">
+                  <li>Comptes utilisateurs et connexion sécurisée</li>
+                  <li>API et tableaux de bord</li>
+                  <li>Règles métier propres à votre activité</li>
+                </ul>
+                <a class="btn-p" href="/devis/?projet=application">Demander un devis</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="price">
+                <h3>Automatisation et IA</h3>
+                <p class="amt">Sur devis</p>
+                <p class="delay">Selon le nombre de tâches à automatiser</p>
+                <ul class="chk">
+                  <li>Fin des ressaisies entre fichiers et outils</li>
+                  <li>Intégration d’API et assistants IA</li>
+                  <li>Rapports produits automatiquement</li>
+                </ul>
+                <a class="btn-p" href="/devis/?projet=automatisation">Demander un devis</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="price">
+                <h3>Cartes et tableaux de bord</h3>
+                <p class="amt"><span>dès</span> 1&nbsp;500 €</p>
+                <p class="delay">Univers PELIFY INSIGHTS</p>
+                <ul class="chk">
+                  <li>Cartographie interactive</li>
+                  <li>Tableaux de bord et graphiques</li>
+                  <li>Observatoires pour entreprises et collectivités</li>
+                </ul>
+                <a class="btn-p" href="/devis/?projet=insights">Demander un devis</a>
+              </article>
+            </div>
+          </div>
+
+          <h3 class="st mt-5 mb-3">Maintenance après la mise en ligne</h3>
+          <div class="row g-4 price-grid">
+            <div class="col-md-4">
+              <article class="price">
+                <h3>Essentiel</h3>
+                <p class="amt">49 € <span>par mois</span></p>
+                <ul class="chk">
+                  <li>Mises à jour de sécurité</li>
+                  <li>Sauvegarde mensuelle</li>
+                  <li>Surveillance de la disponibilité</li>
+                </ul>
+              </article>
+            </div>
+            <div class="col-md-4">
+              <article class="price feat">
+                <span class="tag">Conseillé</span>
+                <h3>Business</h3>
+                <p class="amt">99 € <span>par mois</span></p>
+                <ul class="chk">
+                  <li>Tout l’Essentiel, avec sauvegarde hebdomadaire</li>
+                  <li>Une heure de modifications par mois</li>
+                  <li>Réponse sous 48 heures ouvrées</li>
+                </ul>
+              </article>
+            </div>
+            <div class="col-md-4">
+              <article class="price">
+                <h3>Premium</h3>
+                <p class="amt">199 € <span>par mois</span></p>
+                <ul class="chk">
+                  <li>Tout le Business, avec sauvegarde quotidienne</li>
+                  <li>Trois heures de modifications par mois</li>
+                  <li>Réponse sous 24 heures ouvrées et rapport mensuel</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+          <p class="note mt-4">
+            Prix indicatifs en euros. La TVA applicable est précisée sur chaque
+            devis. L’hébergement, le nom de domaine, les licences et les frais
+            des services de paiement sont à part. Le prix final dépend du
+            contenu, des fonctionnalités et des délais.
+          </p>
         </div>
       </section>
 
@@ -595,7 +682,7 @@
               <article class="rea">
                 <div class="thumb">
                   <img
-                    src="img/illu-outils.svg"
+                    src="/img/illu-outils.svg"
                     width="800"
                     height="520"
                     loading="lazy"
@@ -622,7 +709,7 @@
               <article class="rea">
                 <div class="thumb">
                   <img
-                    src="img/illu-sites.svg"
+                    src="/img/illu-sites.svg"
                     width="800"
                     height="520"
                     loading="lazy"
@@ -649,7 +736,7 @@
               <article class="rea">
                 <div class="thumb">
                   <img
-                    src="img/illu-pipeline.svg"
+                    src="/img/illu-pipeline.svg"
                     width="800"
                     height="520"
                     loading="lazy"
@@ -682,7 +769,7 @@
             <div class="col-5">
               <div class="media full">
                 <img
-                  src="img/corneille_ehou_pelify.png"
+                  src="/img/corneille_ehou_pelify.png"
                   width="600"
                   height="700"
                   loading="lazy"
@@ -710,7 +797,7 @@
                   outil documenté, que votre équipe peut reprendre.
                 </p>
               </div>
-              <a class="btn-p" href="#contact">Nous contacter</a>
+              <a class="btn-p" href="/devis/">Nous contacter</a>
             </div>
           </div>
 
@@ -765,175 +852,13 @@
         </div>
       </section>
 
-      <section id="tarifs" class="blk dark">
-        <div class="container">
-          <h2>Tarifs <span class="hl">clairs</span>, devis gratuit</h2>
-          <h3 class="sub">
-            Un prix de départ pour chaque type de projet, ajusté ensuite à votre
-            besoin
-          </h3>
-          <div class="row g-4 mt-1 price-grid">
-            <div class="col-md-6 col-lg-4">
-              <article class="price">
-                <h3>Site vitrine statique</h3>
-                <p class="amt"><span>dès</span> 900 €</p>
-                <p class="delay">Délai indicatif : 2 à 3 semaines</p>
-                <ul class="chk">
-                  <li>Jusqu’à 5 pages adaptées au mobile</li>
-                  <li>Formulaire de contact</li>
-                  <li>Référencement technique de base</li>
-                  <li>Mise en ligne et nom de domaine configuré</li>
-                </ul>
-                <a
-                  class="btn-p"
-                  href="mailto:contact@pelify.app?subject=Devis%20site%20vitrine%20statique"
-                  >Demander un devis</a
-                >
-              </article>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <article class="price feat">
-                <span class="tag">Le plus demandé</span>
-                <h3>Site vitrine dynamique</h3>
-                <p class="amt"><span>dès</span> 1&nbsp;800 €</p>
-                <p class="delay">Délai indicatif : 3 à 5 semaines</p>
-                <ul class="chk">
-                  <li>Espace d’administration des contenus</li>
-                  <li>Actualités, galerie ou catalogue de services</li>
-                  <li>Formulaires avancés et base de données</li>
-                  <li>Accessibilité (WCAG) et performance</li>
-                </ul>
-                <a
-                  class="btn-p"
-                  href="mailto:contact@pelify.app?subject=Devis%20site%20vitrine%20dynamique"
-                  >Demander un devis</a
-                >
-              </article>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <article class="price">
-                <h3>Site e-commerce</h3>
-                <p class="amt"><span>dès</span> 2&nbsp;900 €</p>
-                <p class="delay">Délai indicatif : 4 à 8 semaines</p>
-                <ul class="chk">
-                  <li>Catalogue, panier et paiement en ligne</li>
-                  <li>Gestion des commandes et des stocks</li>
-                  <li>Espace client</li>
-                  <li>Administration simple à prendre en main</li>
-                </ul>
-                <a
-                  class="btn-p"
-                  href="mailto:contact@pelify.app?subject=Devis%20site%20e-commerce"
-                  >Demander un devis</a
-                >
-              </article>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <article class="price">
-                <h3>Application web</h3>
-                <p class="amt"><span>dès</span> 6&nbsp;000 €</p>
-                <p class="delay">Sur devis, après un échange sur vos besoins</p>
-                <ul class="chk">
-                  <li>Comptes utilisateurs et connexion sécurisée</li>
-                  <li>API et tableaux de bord</li>
-                  <li>Règles métier propres à votre activité</li>
-                </ul>
-                <a
-                  class="btn-p"
-                  href="mailto:contact@pelify.app?subject=Devis%20application%20web"
-                  >Demander un devis</a
-                >
-              </article>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <article class="price">
-                <h3>Automatisation et IA</h3>
-                <p class="amt">Sur devis</p>
-                <p class="delay">Selon le nombre de tâches à automatiser</p>
-                <ul class="chk">
-                  <li>Fin des ressaisies entre fichiers et outils</li>
-                  <li>Intégration d’API et assistants IA</li>
-                  <li>Rapports produits automatiquement</li>
-                </ul>
-                <a
-                  class="btn-p"
-                  href="mailto:contact@pelify.app?subject=Devis%20automatisation"
-                  >Demander un devis</a
-                >
-              </article>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <article class="price">
-                <h3>Cartes et tableaux de bord</h3>
-                <p class="amt"><span>dès</span> 1&nbsp;500 €</p>
-                <p class="delay">Univers PELIFY INSIGHTS</p>
-                <ul class="chk">
-                  <li>Cartographie interactive</li>
-                  <li>Tableaux de bord et graphiques</li>
-                  <li>Observatoires pour entreprises et collectivités</li>
-                </ul>
-                <a
-                  class="btn-p"
-                  href="mailto:contact@pelify.app?subject=Devis%20cartographie%20et%20donn%C3%A9es"
-                  >Demander un devis</a
-                >
-              </article>
-            </div>
-          </div>
-
-          <h3 class="st mt-5 mb-3">Maintenance après la mise en ligne</h3>
-          <div class="row g-4 price-grid">
-            <div class="col-md-4">
-              <article class="price">
-                <h3>Essentiel</h3>
-                <p class="amt">49 € <span>par mois</span></p>
-                <ul class="chk">
-                  <li>Mises à jour de sécurité</li>
-                  <li>Sauvegarde mensuelle</li>
-                  <li>Surveillance de la disponibilité</li>
-                </ul>
-              </article>
-            </div>
-            <div class="col-md-4">
-              <article class="price feat">
-                <span class="tag">Conseillé</span>
-                <h3>Business</h3>
-                <p class="amt">99 € <span>par mois</span></p>
-                <ul class="chk">
-                  <li>Tout l’Essentiel, avec sauvegarde hebdomadaire</li>
-                  <li>Une heure de modifications par mois</li>
-                  <li>Réponse sous 48 heures ouvrées</li>
-                </ul>
-              </article>
-            </div>
-            <div class="col-md-4">
-              <article class="price">
-                <h3>Premium</h3>
-                <p class="amt">199 € <span>par mois</span></p>
-                <ul class="chk">
-                  <li>Tout le Business, avec sauvegarde quotidienne</li>
-                  <li>Trois heures de modifications par mois</li>
-                  <li>Réponse sous 24 heures ouvrées et rapport mensuel</li>
-                </ul>
-              </article>
-            </div>
-          </div>
-          <p class="note mt-4">
-            Prix indicatifs en euros. La TVA applicable est précisée sur chaque
-            devis. L’hébergement, le nom de domaine, les licences et les frais
-            des services de paiement sont à part. Le prix final dépend du
-            contenu, des fonctionnalités et des délais.
-          </p>
-        </div>
-      </section>
-
       <section id="faq" class="blk alt">
         <div class="container">
           <div class="row g-3 g-md-5 stretch">
             <div class="col-5">
               <div class="media">
                 <img
-                  src="img/sectionfaq.svg"
+                  src="/img/sectionfaq.svg"
                   width="800"
                   height="520"
                   loading="lazy"
@@ -981,99 +906,50 @@
       </section>
     </main>
 
-    <footer id="contact">
+        <footer id="contact">
       <div class="container">
         <div class="cta">
-          <h2>
-            Parlons de la tâche que vous aimeriez ne plus faire
-            <span class="hl">à la main</span>
-          </h2>
-          <p>
-            Décrivez-nous qui saisit quoi, dans quel fichier, avec quelles
-            données personnelles. Nous répondons avec une première piste et un
-            ordre de grandeur de délai.
-          </p>
+          <h2>Un projet en tête ? <span class="hl">Parlons-en.</span></h2>
+          <p>Décrivez votre besoin en quelques lignes. Nous répondons avec une première piste, un ordre de grandeur de prix et un délai.</p>
           <div class="d-flex flex-wrap gap-2">
-            <a
-              class="btn-p"
-              href="mailto:contact@pelify.app?subject=Projet%20PELIFY"
-              >contact@pelify.app</a
-            ><a class="btn-o" href="tel:+33780791811">+33 7 80 79 18 11</a>
+            <a class="btn-p" href="/devis/">Demander un devis</a>
+            <a class="btn-o" href="tel:+33780791811">+33 7 80 79 18 11</a>
           </div>
         </div>
         <div class="cols row g-5">
           <div class="col-12 col-lg-4">
-            <a class="brand mb-3" href="index.html" aria-label="PELIFY, accueil"
-              ><img
-                src="img/logo-mark.svg"
-                width="48"
-                height="48"
-                alt=""
-              /><span class="bt"
-                ><b>PELIFY</b
-                ><small
-                  >Conseil en systèmes et logiciels informatiques</small
-                ></span
-              ></a
-            >
-            <p>
-              Outils numériques sur mesure, automatisation de tâches et
-              conformité RGPD pour TPE, PME, associations et collectivités.
-            </p>
-            <address>
-              <strong>PELIFY</strong><br />13 avenue Lafagette<br />09000
-              Foix<br /><a href="mailto:contact@pelify.app"
-                >contact@pelify.app</a
-              >
-            </address>
+            <a class="brand mb-3" href="/" aria-label="PELIFY, accueil">
+              <img src="/img/logo-mark.svg" width="48" height="48" alt="" />
+              <span class="bt"><b>PELIFY</b><small>Conseil en systèmes et logiciels informatiques</small></span>
+            </a>
+            <address><strong>PELIFY</strong><br />13 avenue Lafagette<br />09000 Foix<br /><a href="mailto:contact@pelify.app">contact@pelify.app</a></address>
           </div>
-          <div class="col-6 col-lg-2">
-            <h3>Navigation</h3>
+          <div class="col-6 col-lg-4">
+            <h3>Les univers</h3>
             <ul>
-              <li><a href="index.html#univers">Tous les univers PELIFY</a></li>
-              <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
-              <li><a href="#outils">Prestations</a></li>
-              <li><a href="#tarifs">Tarifs</a></li>
-              <li><a href="#realisations"> Réalisations phares</a></li>
-              <li><a href="#faq">Questions fréquentes</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-lg-2">
-            <h3>Prestations</h3>
-            <ul>
-              <li><a href="#outils">Outils sur mesure</a></li>
-              <li><a href="#piton">Sites web</a></li>
-              <li><a href="#automatisation">Automatisation</a></li>
-              <li><a href="#rgpd">Conformité RGPD</a></li>
+              <li><a href="/studio/">PELIFY Studio, sites et applications</a></li>
+              <li><a href="/arena/">PELIFY Arena, gaming et live</a></li>
+              <li><a href="/screen/">PELIFY Screen, cinéma</a></li>
+              <li><a href="/insights/">PELIFY Insights, données</a></li>
+              <li><a href="/market/">PELIFY Market, e-commerce</a></li>
             </ul>
           </div>
           <div class="col-12 col-lg-4">
             <h3>Où nous trouver</h3>
-            <div
-              id="map"
-              role="region"
-              aria-label="Carte : PELIFY, 13 avenue Lafagette, Foix"
-            ></div>
+            <div id="map" role="region" aria-label="Carte : PELIFY, 13 avenue Lafagette, Foix"></div>
           </div>
         </div>
         <div class="legal">
           <nav aria-label="Informations légales">
             <ul class="legal-links">
-              <li><a href="mentions-legales.html">Mentions légales</a></li>
-              <li>
-                <a href="politique-de-confidentialite.html"
-                  >Politique de confidentialité</a
-                >
-              </li>
-              <li><a href="cookies.html">Cookies</a></li>
-              <li><a href="accessibilite.html">Accessibilité</a></li>
-              <li><a href="plan-du-site.html">Plan du site</a></li>
+              <li><a href="/mentions-legales.html">Mentions légales</a></li>
+              <li><a href="/politique-de-confidentialite.html">Politique de confidentialité</a></li>
+              <li><a href="/cookies.html">Cookies</a></li>
+              <li><a href="/accessibilite.html">Accessibilité</a></li>
+              <li><a href="/plan-du-site.html">Plan du site</a></li>
             </ul>
           </nav>
-          <p class="mb-0">
-            © 2026 PELIFY, micro-entreprise de Corneille Ehou · SIRET : 130 662
-            588 00016 · Hébergement : Netlify
-          </p>
+          <p class="mb-0">© 2026 PELIFY, micro-entreprise de Corneille Ehou, SIRET 130 662 588 00016, hébergement Netlify</p>
         </div>
       </div>
     </footer>
@@ -1084,6 +960,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="app/app.js"></script>
+    <script src="/app/app.js"></script>
   </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "name": "pelify-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Site PELIFY : portail, cinq univers et application de réservation de lives.",
+  "workspaces": ["apps/live"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run dev -w apps/live",
+    "test": "npm test -w apps/live",
+    "lint": "npm run lint -w apps/live"
+  },
+  "engines": { "node": ">=20" }
+}

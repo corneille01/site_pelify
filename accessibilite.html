@@ -11,7 +11,7 @@
     <meta name="author" content="Corneille Ehou" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://pelify.app/accessibilite.html" />
-    <link rel="icon" type="image/svg+xml" href="img/logo-mark.svg" />
+    <link rel="icon" type="image/svg+xml" href="/img/logo-mark.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,85 +24,35 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
-  <body>
+  <body class="portal">
     <a class="skip" href="#contenu">Aller au contenu</a>
-    <header>
-      <nav
-        class="navbar navbar-expand-lg sticky-top"
-        aria-label="Navigation principale"
-      >
+        <header>
+      <nav class="navbar navbar-expand-lg sticky-top" aria-label="Navigation principale">
         <div class="container">
-          <a class="brand" href="index.html" aria-label="PELIFY, accueil"
-            ><img src="img/logo-mark.svg" width="48" height="48" alt="" /><span
-              class="bt"
-              ><b>PELIFY</b
-              ><small
-                >Conseil en systèmes et logiciels informatiques</small
-              ></span
-            ></a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menu"
-            aria-controls="menu"
-            aria-expanded="false"
-            aria-label="Ouvrir le menu"
-          >
+          <a class="brand" href="/" aria-label="PELIFY, accueil">
+            <img src="/img/logo-mark.svg" width="48" height="48" alt="" />
+            <span class="bt"><b>PELIFY</b><small>Conseil en systèmes et logiciels informatiques</small></span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-              <li class="nav-item">
-                <a class="nav-link" href="studio.html#qui-sommes-nous"
-                  >Découvrir PELIFY</a
-                >
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Prestations</a
-                >
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="studio.html#outils"
-                      >Outils sur mesure</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="studio.html#piton"
-                      >Sites web</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="studio.html#automatisation"
-                      >Automatisation</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="studio.html#rgpd"
-                      >Conformité RGPD</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="studio.html#realisations"
-                  >Réalisations phares</a
-                >
-              </li>
+              <li class="nav-item"><a class="nav-link" href="/studio/">Studio</a></li>
+              <li class="nav-item"><a class="nav-link" href="/arena/">Arena</a></li>
+              <li class="nav-item"><a class="nav-link" href="/screen/">Screen</a></li>
+              <li class="nav-item"><a class="nav-link" href="/insights/">Insights</a></li>
+              <li class="nav-item"><a class="nav-link" href="/market/">Market</a></li>
+              <li class="nav-item"><a class="nav-link" href="/studio/#tarifs">Tarifs</a></li>
+              <li class="nav-item ms-lg-2"><a class="btn-p nav-cta" href="/devis/">Devis gratuit</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
+    
 
     <main id="contenu">
       <div class="container">
@@ -231,73 +181,55 @@
       </div>
     </main>
 
-    <footer id="contact">
+        <footer id="contact">
       <div class="container">
-        <div class="cols row g-5">
-          <div class="col-12 col-lg-6">
-            <a
-              class="brand mb-3"
-              href="index.html"
-              aria-label="PELIFY, retour à l’accueil"
-              ><img
-                src="img/logo-mark.svg"
-                width="48"
-                height="48"
-                alt=""
-              /><span class="bt"
-                ><b>PELIFY</b
-                ><small
-                  >Conseil en systèmes et logiciels informatiques</small
-                ></span
-              ></a
-            >
-            <address>
-              <strong>PELIFY</strong><br />13 avenue Lafagette<br />09000
-              Foix<br /><a href="mailto:contact@pelify.app"
-                >contact@pelify.app</a
-              >
-              · <a href="tel:+33780791811">+33 7 80 79 18 11</a>
-            </address>
+        <div class="cta">
+          <h2>Un projet en tête ? <span class="hl">Parlons-en.</span></h2>
+          <p>Décrivez votre besoin en quelques lignes. Nous répondons avec une première piste, un ordre de grandeur de prix et un délai.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn-p" href="/devis/">Demander un devis</a>
+            <a class="btn-o" href="tel:+33780791811">+33 7 80 79 18 11</a>
           </div>
-          <div class="col-6 col-lg-3">
-            <h3>Navigation</h3>
+        </div>
+        <div class="cols row g-5">
+          <div class="col-12 col-lg-4">
+            <a class="brand mb-3" href="/" aria-label="PELIFY, accueil">
+              <img src="/img/logo-mark.svg" width="48" height="48" alt="" />
+              <span class="bt"><b>PELIFY</b><small>Conseil en systèmes et logiciels informatiques</small></span>
+            </a>
+            <address><strong>PELIFY</strong><br />13 avenue Lafagette<br />09000 Foix<br /><a href="mailto:contact@pelify.app">contact@pelify.app</a></address>
+          </div>
+          <div class="col-6 col-lg-4">
+            <h3>Les univers</h3>
             <ul>
-              <li>
-                <a href="studio.html#qui-sommes-nous">Qui sommes-nous ?</a>
-              </li>
-              <li><a href="studio.html#outils">Nos prestations</a></li>
-              <li><a href="studio.html#realisations">Nos réalisations</a></li>
-              <li><a href="studio.html#faq">Questions fréquentes</a></li>
+              <li><a href="/studio/">PELIFY Studio, sites et applications</a></li>
+              <li><a href="/arena/">PELIFY Arena, gaming et live</a></li>
+              <li><a href="/screen/">PELIFY Screen, cinéma</a></li>
+              <li><a href="/insights/">PELIFY Insights, données</a></li>
+              <li><a href="/market/">PELIFY Market, e-commerce</a></li>
             </ul>
           </div>
-          <div class="col-6 col-lg-3">
-            <h3>Prestations</h3>
+          <div class="col-6 col-lg-4">
+            <h3>Services</h3>
             <ul>
-              <li><a href="studio.html#outils">Outils sur mesure</a></li>
-              <li><a href="studio.html#piton">Sites web</a></li>
-              <li><a href="studio.html#automatisation">Automatisation</a></li>
-              <li><a href="studio.html#rgpd">Conformité RGPD</a></li>
+              <li><a href="/studio/#tarifs">Tarifs des prestations numériques</a></li>
+              <li><a href="/arena/reserver/">Réserver un live</a></li>
+              <li><a href="/arena/tournois/">Tournois gaming</a></li>
+              <li><a href="/devis/">Demander un devis</a></li>
             </ul>
           </div>
         </div>
         <div class="legal">
           <nav aria-label="Informations légales">
             <ul class="legal-links">
-              <li><a href="mentions-legales.html">Mentions légales</a></li>
-              <li>
-                <a href="politique-de-confidentialite.html"
-                  >Politique de confidentialité</a
-                >
-              </li>
-              <li><a href="cookies.html">Cookies</a></li>
-              <li><a href="accessibilite.html">Accessibilité</a></li>
-              <li><a href="plan-du-site.html">Plan du site</a></li>
+              <li><a href="/mentions-legales.html">Mentions légales</a></li>
+              <li><a href="/politique-de-confidentialite.html">Politique de confidentialité</a></li>
+              <li><a href="/cookies.html">Cookies</a></li>
+              <li><a href="/accessibilite.html">Accessibilité</a></li>
+              <li><a href="/plan-du-site.html">Plan du site</a></li>
             </ul>
           </nav>
-          <p class="mb-0">
-            © 2026 PELIFY, micro-entreprise de Corneille Ehou · SIRET : à
-            compléter · Hébergement : Netlify
-          </p>
+          <p class="mb-0">© 2026 PELIFY, micro-entreprise de Corneille Ehou, SIRET 130 662 588 00016, hébergement Netlify</p>
         </div>
       </div>
     </footer>

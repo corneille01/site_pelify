@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /merci/
+Sitemap: https://pelify.app/sitemap.xml

@@ -257,3 +257,76 @@ body.portal a.btn-o{color:var(--text)}
 body.portal a.btn-o:hover{background:var(--text);color:var(--ink)}
 body.portal .price a.btn-p,body.portal .u-card a.btn-p{color:var(--ink)}
 .price,.price li,.u-card li{text-align:left;hyphens:manual}
+
+/* ===== Thème sombre commun à toutes les pages ===== */
+body.portal main h2,body.portal .st,body.portal .page h1,body.portal .page h2,body.portal main h3,body.portal main h4{color:#fff}
+body.portal .hl{color:var(--accent)}
+body.portal .blk{background:var(--bg);color:var(--text)}
+body.portal .blk.alt{background:#0b0b12}
+body.portal .blk.dark{background:#08080d}
+body.portal .alt-p{background:#0b0b12;border-top:1px solid #24243a;border-bottom:1px solid #24243a}
+body.portal main a:not(.btn-p):not(.btn-o):not(.door):not(.mini){color:var(--primary)}
+body.portal main a:not(.btn-p):not(.btn-o):hover{color:#fff}
+body.portal .sub{color:var(--text)}
+body.portal ul.chk li::before{border-color:var(--primary)}
+body.portal .rea{background:var(--card2);border:1px solid #2c2c44;border-top:5px solid var(--accent);box-shadow:none;color:var(--text)}
+body.portal .rea:hover{box-shadow:0 14px 32px rgba(0,0,0,.5)}
+body.portal .rea .thumb{background:#0b0b12}
+body.portal .media{box-shadow:none;border:1px solid #2c2c44}
+body.portal details{border-top:1px solid #2c2c44}
+body.portal details:last-of-type{border-bottom:1px solid #2c2c44}
+body.portal summary{color:#fff}
+body.portal .page{color:var(--text)}
+body.portal .table{--bs-table-color:var(--text);--bs-table-bg:transparent;--bs-table-border-color:#2c2c44;--bs-table-striped-bg:#0f0f18;--bs-table-striped-color:var(--text)}
+body.portal .table th{color:#fff}
+body.portal .todo{background:rgba(255,0,127,.12);color:#fff;border:1px dashed var(--accent);padding:0 .3rem}
+body.portal .trust{background:#0b0b12}
+body.portal .navbar-nav .nav-link[aria-current="page"]{color:var(--primary)!important;text-decoration-color:var(--accent)}
+body.portal .nav-cta{padding:.55rem 1rem;font-size:.8rem;margin:.4rem 0}
+body.portal .navbar-collapse{padding-bottom:.6rem}
+body.portal .kicker{text-align:left}
+
+/* Fil d'Ariane */
+.breadcrumb{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.82rem;font-weight:600;--bs-breadcrumb-divider-color:#aab3c5}
+.breadcrumb-item+.breadcrumb-item::before{color:#aab3c5}
+.breadcrumb-item.active{color:#aab3c5}
+.crumb .breadcrumb a{text-decoration:none}
+
+/* Illustrations d'appareils */
+.scene{display:block;width:100%;max-width:640px;height:auto;margin-inline:auto}
+.p-hero .scene{position:relative;z-index:1}
+
+/* Portes avec image */
+.door .dimg{width:calc(100% + 3.6rem);max-width:none;margin:-1.8rem -1.8rem 1.1rem;aspect-ratio:16/10;object-fit:cover;object-position:center 30%;display:block;border-bottom:1px solid #24243a;background:#08080d}
+.door{min-height:0}
+
+/* Étapes */
+.step{background:var(--card2);border:1px solid #2c2c44;padding:1.5rem;height:100%}
+.step .n{display:block;font-weight:800;font-size:2rem;color:var(--primary);line-height:1;margin-bottom:.6rem}
+.step h3{font-size:1.1rem;margin-bottom:.4rem;text-align:left}
+.step p{margin:0;color:var(--text);text-align:left}
+.faq details p{color:var(--text);text-align:left}
+
+/* Mini cartes "autres univers" */
+.mini{display:block;background:var(--card2);border:1px solid #2c2c44;border-top:4px solid var(--primary);text-decoration:none;color:var(--text)!important;height:100%;transition:transform .2s,border-color .2s}
+.mini:hover,.mini:focus-visible{transform:translateY(-4px);border-top-color:var(--accent)}
+.mini img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:center 30%}
+.mini .mn{display:block;font-weight:800;font-size:.9rem;color:#fff;padding:.7rem .9rem 0;text-align:left}
+.mini .md{display:block;font-size:.82rem;color:#aab3c5;padding:.1rem .9rem .9rem;text-align:left}
+
+/* Formulaires */
+.pform label{display:block;font-weight:700;font-size:.85rem;margin-bottom:.35rem;color:#fff;text-align:left}
+.pform input:not([type=checkbox]),.pform select,.pform textarea{width:100%;background:#0d0d14;color:#fff;border:2px solid #2c2c44;padding:.75rem .9rem;font:inherit;min-height:48px}
+.pform input:focus,.pform select:focus,.pform textarea:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 3px rgba(0,255,204,.25)}
+.pform .chkrow{display:flex;gap:.7rem;align-items:flex-start}
+.pform .chkrow input{width:22px;height:22px;margin-top:.2rem;accent-color:#00ffcc;flex:none}
+.pform .chkrow label{font-weight:500;font-size:.9rem;margin:0}
+.pform .hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.pform .btn-p{margin-top:1.2rem;cursor:pointer}
+.pform .btn-p:disabled{opacity:.6;cursor:wait}
+.fmsg{margin:1rem 0 0;font-weight:700;text-align:left}
+.fmsg:empty{display:none}
+.fmsg.ok{color:var(--primary);border-left:4px solid var(--primary);padding-left:.8rem}
+.fmsg.ko{color:#ff7ab3;border-left:4px solid var(--accent);padding-left:.8rem}
+
+@media(max-width:991.98px){.p-hero .scene{max-width:440px}}
