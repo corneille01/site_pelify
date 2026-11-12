@@ -2,24 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { X, Mail, Smartphone, MessageCircle, Loader2, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import type { UserAccount } from '../types';
 import { api, ApiError, Channel, Challenge, ServerConfig } from '../utils/api';
-import { COUNTRY_CODES } from '../data/sectors';
+import { COUNTRY_CODES } from '../data/phone';
 
 export type AuthView = 'login' | 'register' | 'recover';
 
-export interface AuthPrefill {
-  fullName?: string;
-  businessName?: string;
-  email?: string;
-  phone?: string;
-  countryCode?: string;
-  sector?: string;
-  country?: string;
-  onScreenPhone?: string;
-}
-
 interface Props {
   initialView?: AuthView;
-  prefill?: AuthPrefill;
   config: ServerConfig | null;
   onAuthenticated: (user: UserAccount) => void;
   onClose: () => void;
@@ -37,7 +25,7 @@ const label = 'block text-sm font-semibold text-white mb-1';
 const primary =
   'w-full inline-flex items-center justify-center gap-2 bg-[#00ffcc] hover:bg-[#00d9ad] disabled:bg-[#aab3c5] text-[#050508] font-bold px-5 py-3 text-base min-h-[48px]';
 
-export const ClientAccountModal: React.FC<Props> = ({ initialView = 'login', prefill, config, onAuthenticated, onClose }) => {
+export const AuthModal: React.FC<Props> = ({ initialView = 'login', config, onAuthenticated, onClose }) => {
   const [view, setView] = useState<AuthView>(initialView);
   const [stage, setStage] = useState<'form' | 'code' | 'reset'>('form');
   const [channel, setChannel] = useState<Channel>('email');
@@ -49,13 +37,13 @@ export const ClientAccountModal: React.FC<Props> = ({ initialView = 'login', pre
   const [cooldown, setCooldown] = useState(0);
   const [showPwd, setShowPwd] = useState(false);
 
-  const [identifier, setIdentifier] = useState(prefill?.email || '');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState(prefill?.fullName || '');
-  const [businessName, setBusinessName] = useState(prefill?.businessName || '');
-  const [email, setEmail] = useState(prefill?.email || '');
-  const [phone, setPhone] = useState(prefill?.phone || '');
-  const [countryCode, setCountryCode] = useState(prefill?.countryCode || '+228');
+  const [pseudo, setPseudo] = useState('');
+  const [accept, setAccept] = useState(false);
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [countryCode, setCountryCode] = useState('+33');
   const [code, setCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
 
@@ -116,20 +104,7 @@ export const ClientAccountModal: React.FC<Props> = ({ initialView = 'login', pre
         if (!identifier.trim() || !password) throw new ApiError('Saisissez votre e-mail ou numéro et votre mot de passe.', 0);
         gotChallenge(await api.login(identifier.trim(), password, channel));
       } else if (view === 'register') {
-        gotChallenge(
-          await api.register({
-            fullName: fullName.trim(),
-            businessName: businessName.trim(),
-            email: email.trim(),
-            phone: phone.trim(),
-            countryCode,
-            password,
-            channel,
-            sector: prefill?.sector,
-            country: prefill?.country,
-            onScreenPhone: prefill?.onScreenPhone,
-          }),
-        );
+        gotChallenge(await api.register({ pseudo: pseudo.trim(), email: email.trim(), phone: phone.trim(), countryCode, password, channel: phone.trim() ? channel : 'email', accept }));
       } else {
         if (!identifier.trim()) throw new ApiError('Saisissez votre e-mail ou votre numéro.', 0);
         gotChallenge(await api.recover(identifier.trim(), channel));
@@ -255,57 +230,30 @@ export const ClientAccountModal: React.FC<Props> = ({ initialView = 'login', pre
               {view === 'register' ? (
                 <>
                   <div>
-                    <label className={label} htmlFor="a-name">
-                      Nom et prénom
+                    <label className={label} htmlFor="a-pseudo">
+                      Pseudonyme gaming (visible par les autres joueurs)
                     </label>
-                    <input id="a-name" className={field} autoComplete="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
-                  </div>
-                  <div>
-                    <label className={label} htmlFor="a-biz">
-                      Nom de votre commerce
-                    </label>
-                    <input id="a-biz" className={field} autoComplete="organization" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
+                    <input id="a-pseudo" className={field} autoComplete="nickname" maxLength={24} value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
                   </div>
                   <div>
                     <label className={label} htmlFor="a-mail">
                       Adresse e-mail
                     </label>
-                    <input
-                      id="a-mail"
-                      type="email"
-                      inputMode="email"
-                      className={field}
-                      autoComplete="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
+                    <input id="a-mail" type="email" inputMode="email" className={field} autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                   </div>
                   <div>
                     <label className={label} htmlFor="a-phone">
-                      Numéro WhatsApp
+                      Téléphone <span className="font-normal text-[#aab3c5]">(facultatif, pour recevoir le code par SMS ou WhatsApp)</span>
                     </label>
                     <div className="flex gap-2">
-                      <select
-                        aria-label="Indicatif du pays"
-                        className={`${field} w-28 shrink-0 px-2`}
-                        value={countryCode}
-                        onChange={(e) => setCountryCode(e.target.value)}
-                      >
+                      <select aria-label="Indicatif du pays" className={`${field} w-28 shrink-0 px-2`} value={countryCode} onChange={(e) => setCountryCode(e.target.value)}>
                         {COUNTRY_CODES.map((c) => (
                           <option key={c.id} value={c.code}>
                             {c.flag} {c.code}
                           </option>
                         ))}
                       </select>
-                      <input
-                        id="a-phone"
-                        type="tel"
-                        inputMode="tel"
-                        className={field}
-                        autoComplete="tel-national"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                      />
+                      <input id="a-phone" type="tel" inputMode="tel" className={field} autoComplete="tel-national" value={phone} onChange={(e) => setPhone(e.target.value)} />
                     </div>
                   </div>
                 </>
@@ -320,7 +268,7 @@ export const ClientAccountModal: React.FC<Props> = ({ initialView = 'login', pre
                     autoComplete="username"
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
-                    placeholder="nom@exemple.com ou +22890000000"
+                    placeholder="nom@exemple.com"
                   />
                 </div>
               )}
@@ -351,7 +299,16 @@ export const ClientAccountModal: React.FC<Props> = ({ initialView = 'login', pre
                 </div>
               )}
 
-              <ChannelPicker current={channel} onPick={setChannel} />
+              {view === 'register' && (
+                <label className="flex items-start gap-3 text-sm text-[#dde4f0] cursor-pointer">
+                  <input type="checkbox" checked={accept} onChange={(e) => setAccept(e.target.checked)} className="mt-1 w-5 h-5 accent-[#00ffcc]" />
+                  <span>
+                    J’ai 15 ans ou plus et j’accepte les <a className="underline text-[#00ffcc]" href="/arena/regles/">règles de la communauté</a> et la{' '}
+                    <a className="underline text-[#00ffcc]" href="/politique-de-confidentialite.html">politique de confidentialité</a>.
+                  </span>
+                </label>
+              )}
+              {(view !== 'register' || phone.trim()) && <ChannelPicker current={channel} onPick={setChannel} />}
 
               <button type="submit" disabled={busy} className={primary}>
                 {busy && <Loader2 className="w-4 h-4 animate-spin" />}

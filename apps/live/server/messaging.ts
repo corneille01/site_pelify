@@ -1,7 +1,4 @@
 import nodemailer from 'nodemailer';
-import type { Booking, NotificationLog } from '../src/types';
-import { PACKS } from '../src/data/packs';
-import { formatDateFr, formatFcfa } from '../src/utils/formatters';
 import { isProduction } from './security';
 
 /** Résultat réel d'un envoi. « demo » n'existe qu'hors production, sans fournisseur configuré. */
@@ -10,18 +7,15 @@ export type Delivery = 'sent' | 'demo' | 'failed' | 'not_configured';
 const env = (k: string, d = '') => (process.env[k] ?? d).trim();
 const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] as string);
 
-export const studioEmail = () => env('STUDIO_EMAIL', 'blogoos1@gmail.com');
-export const studioWhatsapp = () => env('STUDIO_WHATSAPP');
-
 export const emailProviderReady = () => Boolean(env('RESEND_API_KEY') || env('BREVO_API_KEY') || (env('SMTP_HOST') && env('SMTP_USER') && env('SMTP_PASS')));
 export const phoneProviderReady = () => Boolean(env('TWILIO_ACCOUNT_SID') && env('TWILIO_AUTH_TOKEN'));
 
 /* ───────── E-mail (Resend, Brevo ou SMTP) ───────── */
 export async function sendEmail(to: string, subject: string, text: string): Promise<Delivery> {
   if (!to) return 'not_configured';
-  const fromEmail = env('MAIL_FROM_EMAIL', 'notifications@ocd-live.com');
-  const fromName = env('MAIL_FROM_NAME', 'Studio OCD Live Lomé');
-  const html = `<div style="font-family:Montserrat,Arial,sans-serif;color:#141414;max-width:560px;margin:auto;border-top:4px solid #B84A14;padding:20px"><p style="font-weight:700;color:#B84A14;margin:0 0 12px">OCD Live</p>${escapeHtml(text).replace(/\n/g, '<br>')}</div>`;
+  const fromEmail = env('MAIL_FROM_EMAIL', 'notifications@pelify.app');
+  const fromName = env('MAIL_FROM_NAME', 'PELIFY Arena');
+  const html = `<div style="font-family:Montserrat,Arial,sans-serif;color:#141414;max-width:560px;margin:auto;border-top:4px solid #00ffcc;padding:20px"><p style="font-weight:700;color:#0a7a66;margin:0 0 12px">PELIFY Arena</p>${escapeHtml(text).replace(/\n/g, '<br>')}</div>`;
 
   if (!emailProviderReady()) {
     if (isProduction()) return 'not_configured';
@@ -114,92 +108,7 @@ export const channelAvailable = (c: CodeChannel) => (c === 'email' ? emailProvid
 export const isDemoChannel = (c: CodeChannel) => !isProduction() && !(c === 'email' ? emailProviderReady() : phoneProviderReady());
 
 export async function deliverCode(channel: CodeChannel, target: { email: string; phoneE164: string }, code: string): Promise<Delivery> {
-  const text = `Votre code de vérification OCD Live est ${code}. Il expire dans 10 minutes. Ne le communiquez à personne.`;
-  if (channel === 'email') return sendEmail(target.email, `Votre code OCD Live : ${code}`, text);
+  const text = `Votre code de vérification PELIFY Arena est ${code}. Il expire dans 10 minutes. Ne le communiquez à personne.`;
+  if (channel === 'email') return sendEmail(target.email, `Votre code PELIFY Arena : ${code}`, text);
   return sendPhoneMessage(channel, target.phoneE164, text, channel === 'whatsapp' && env('TWILIO_WHATSAPP_OTP_CONTENT_SID') ? { contentSid: env('TWILIO_WHATSAPP_OTP_CONTENT_SID'), variables: [code] } : undefined);
-}
-
-/* ───────── Messages de réservation (client et studio) ───────── */
-const METHOD_LABEL: Record<string, string> = {
-  tmoney: 'T-Money',
-  flooz: 'Flooz',
-  mtn_momo: 'MTN MoMo',
-  onsite: 'sur place au studio',
-  card: 'carte',
-  wave_orange: 'Wave ou Orange Money',
-  bank_transfer: 'virement',
-};
-export const methodLabel = (m: string) => METHOD_LABEL[m] || m;
-
-type Kind = 'created' | 'confirmed' | 'cancelled';
-type Flags = Pick<Booking, 'whatsappNotificationSentClient' | 'emailNotificationSentClient' | 'whatsappNotificationSentRegie' | 'emailNotificationSentRegie'>;
-
-export async function notifyBooking(kind: Kind, b: Booking, siteUrl: string, userId: string): Promise<{ logs: (NotificationLog & { userId?: string })[]; flags: Partial<Flags> }> {
-  const pack = PACKS.find((p) => p.id === b.packId);
-  const when = `le ${formatDateFr(b.date)} à ${b.slotTime} (heure de Lomé)`;
-  const phone = `${b.countryCode}${b.phone}`.replace(/\s/g, '');
-  const account = siteUrl ? `\nVotre espace : ${siteUrl}` : '';
-
-  const client = {
-    created: {
-      subject: `Réservation ${b.id} enregistrée`,
-      body: `Bonjour ${b.fullName}, votre réservation ${b.id} est enregistrée.\nPack ${pack?.name}, ${when}.\nMontant : ${formatFcfa(b.totalFcfa)}. Paiement : ${methodLabel(b.paymentMethod)}${b.paymentMethod === 'onsite' ? '' : `, avec la référence ${b.id}`}.\nLe studio vérifie votre paiement puis confirme votre créneau.${account}`,
-    },
-    confirmed: {
-      subject: `Réservation ${b.id} confirmée`,
-      body: `Bonjour ${b.fullName}, votre réservation ${b.id} est confirmée.\nPack ${pack?.name}, ${when}.${account}`,
-    },
-    cancelled: {
-      subject: `Réservation ${b.id} annulée`,
-      body: `Bonjour ${b.fullName}, votre réservation ${b.id} (${when}) est annulée.${b.paymentStatus === 'completed' ? '\nL’équipe du studio vous contacte pour le remboursement.' : ''}`,
-    },
-  }[kind];
-
-  const studio = {
-    created: {
-      subject: `Nouvelle réservation ${b.id} : ${b.businessName}`,
-      body: `Nouvelle réservation ${b.id}.\nClient : ${b.fullName}, ${b.email}, ${phone}.\nCommerce : ${b.businessName} (${b.country}).\nPack ${pack?.name}, ${when}, ${b.mode === 'distance' ? 'à distance' : 'en présentiel'}.\nNuméro affiché : ${b.onScreenPhone}.\nPaiement : ${methodLabel(b.paymentMethod)}, ${formatFcfa(b.totalFcfa)}, à vérifier.`,
-    },
-    cancelled: {
-      subject: `Annulation ${b.id}`,
-      body: `Annulation de ${b.id} : ${b.fullName} (${b.businessName}), ${when}.${b.paymentStatus === 'completed' ? '\nRemboursement à traiter.' : ''}`,
-    },
-    confirmed: null,
-  }[kind];
-
-  const logs: (NotificationLog & { userId?: string })[] = [];
-  const flags: Partial<Flags> = {};
-  const stamp = Date.now();
-  let n = 0;
-  const log = (channel: 'email' | 'whatsapp', recipientType: 'client' | 'regie', recipient: string, subject: string, content: string, status: Delivery) =>
-    logs.push({ id: `NOTIF-${stamp}-${n++}`, timestamp: new Date().toISOString(), channel, recipientType, recipient, subject, content, bookingRef: b.id, status, ...(recipientType === 'client' ? { userId } : {}) });
-
-  const jobs: Promise<void>[] = [
-    sendEmail(b.email, client.subject, client.body).then((s) => {
-      log('email', 'client', b.email, client.subject, client.body, s);
-      flags.emailNotificationSentClient = s === 'sent';
-    }),
-    sendPhoneMessage('whatsapp', phone, client.body).then((s) => {
-      log('whatsapp', 'client', phone, client.subject, client.body, s);
-      flags.whatsappNotificationSentClient = s === 'sent';
-    }),
-  ];
-  if (studio) {
-    jobs.push(
-      sendEmail(studioEmail(), studio.subject, studio.body).then((s) => {
-        log('email', 'regie', studioEmail(), studio.subject, studio.body, s);
-        flags.emailNotificationSentRegie = s === 'sent';
-      }),
-    );
-    if (studioWhatsapp()) {
-      jobs.push(
-        sendPhoneMessage('whatsapp', studioWhatsapp(), studio.body).then((s) => {
-          log('whatsapp', 'regie', studioWhatsapp(), studio.subject, studio.body, s);
-          flags.whatsappNotificationSentRegie = s === 'sent';
-        }),
-      );
-    }
-  }
-  await Promise.all(jobs);
-  return { logs, flags };
 }

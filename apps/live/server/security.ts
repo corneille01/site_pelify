@@ -83,7 +83,7 @@ export function sameHash(a: string, b: string): boolean {
 }
 
 /* ───────── Cookies ───────── */
-export const SESSION_COOKIE = 'ocd_session';
+export const SESSION_COOKIE = 'arena_session';
 export const SESSION_DAYS = 30;
 
 export function parseCookies(header: string | undefined): Record<string, string> {
@@ -141,7 +141,7 @@ export function sameOriginOnly(req: Request, _res: Response, next: NextFunction)
 }
 
 /* ───────── Numéros ───────── */
-export const DEFAULT_COUNTRY_CODE = process.env.DEFAULT_COUNTRY_CODE || '+228';
+export const DEFAULT_COUNTRY_CODE = process.env.DEFAULT_COUNTRY_CODE || '+33';
 
 /** Clé unique d'un numéro : indicatif + chiffres sans le 0 initial. */
 export function phoneKey(countryCode: string, phone: string): string {

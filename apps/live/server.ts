@@ -19,7 +19,7 @@ async function setupVite() {
     const vite = await createViteServer({ server: { middlewareMode: true }, appType: 'spa' });
     app.use(vite.middlewares);
   }
-  app.listen(port, '0.0.0.0', () => console.log(`[OCD Live] http://0.0.0.0:${port}`));
+  app.listen(port, '0.0.0.0', () => console.log(`[PELIFY Arena] http://0.0.0.0:${port}`));
 }
 
 setupVite().catch((e) => {

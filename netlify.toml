@@ -16,17 +16,23 @@
   status = 200
   force = true
 
-# L'ancienne adresse du studio reste valable
+# Anciennes adresses : elles mènent à la nouvelle application
 [[redirects]]
   from = "https://ocd.pelify.app/*"
-  to = "https://pelify.app/arena/reserver/:splat"
+  to = "https://pelify.app/arena/jouer/"
   status = 301
   force = true
 
-# Application de réservation (page unique)
 [[redirects]]
   from = "/arena/reserver/*"
-  to = "/arena/reserver/index.html"
+  to = "/arena/jouer/"
+  status = 301
+  force = true
+
+# Application Arena (page unique)
+[[redirects]]
+  from = "/arena/jouer/*"
+  to = "/arena/jouer/index.html"
   status = 200
 
 [[headers]]

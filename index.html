@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PELIFY | Sites web, gaming, cinéma, données et e-commerce</title>
-    <meta name="description" content="PELIFY réunit cinq univers : STUDIO pour vos sites et applications, ARENA pour le gaming et les lives, SCREEN pour le cinéma, INSIGHTS pour les données et MARKET pour le e-commerce." />
+    <meta name="description" content="PELIFY réunit cinq univers : STUDIO pour vos sites et applications, ARENA pour le gaming, SCREEN pour le cinéma, INSIGHTS pour les données et MARKET pour le e-commerce." />
     <meta name="author" content="Corneille Ehou" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://pelify.app/" />
@@ -13,7 +13,7 @@
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="PELIFY" />
     <meta property="og:title" content="PELIFY | Sites web, gaming, cinéma, données et e-commerce" />
-    <meta property="og:description" content="PELIFY réunit cinq univers : STUDIO pour vos sites et applications, ARENA pour le gaming et les lives, SCREEN pour le cinéma, INSIGHTS pour les données et MARKET pour le e-commerce." />
+    <meta property="og:description" content="PELIFY réunit cinq univers : STUDIO pour vos sites et applications, ARENA pour le gaming, SCREEN pour le cinéma, INSIGHTS pour les données et MARKET pour le e-commerce." />
     <meta property="og:url" content="https://pelify.app/" />
     <meta property="og:image" content="https://pelify.app/img/scene-studio.svg" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/style.css" />
+    <script>try{if(sessionStorage.getItem("warp")){document.documentElement.classList.add("warp-in");setTimeout(function(){document.documentElement.classList.remove("warp-in")},1800)}}catch(e){}</script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pelify.app/#org", "name": "PELIFY", "url": "https://pelify.app/", "logo": "https://pelify.app/img/logo-mark.svg", "email": "contact@pelify.app", "telephone": "+33780791811", "address": {"@type": "PostalAddress", "streetAddress": "13 avenue Lafagette", "addressLocality": "Foix", "postalCode": "09000", "addressCountry": "FR"}, "founder": {"@type": "Person", "name": "Corneille Ehou"}, "sameAs": ["https://tournage.pelify.app"]}, {"@type": "WebSite", "@id": "https://pelify.app/#website", "url": "https://pelify.app/", "name": "PELIFY", "inLanguage": "fr-FR", "publisher": {"@id": "https://pelify.app/#org"}}, {"@type": "ItemList", "name": "Les cinq univers PELIFY", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "PELIFY STUDIO", "url": "https://pelify.app/studio/"}, {"@type": "ListItem", "position": 2, "name": "PELIFY ARENA", "url": "https://pelify.app/arena/"}, {"@type": "ListItem", "position": 3, "name": "PELIFY SCREEN", "url": "https://pelify.app/screen/"}, {"@type": "ListItem", "position": 4, "name": "PELIFY INSIGHTS", "url": "https://pelify.app/insights/"}, {"@type": "ListItem", "position": 5, "name": "PELIFY MARKET", "url": "https://pelify.app/market/"}]}]}</script>
   </head>
   <body class="portal">
@@ -51,73 +52,51 @@
       </nav>
     </header>
     <main id="contenu">
-      <section class="p-hero" id="accueil" aria-label="Présentation">
+      <section class="p-sec gate" id="univers" aria-labelledby="t-univers">
         <div class="container">
-          <div class="row align-items-center g-4">
-            <div class="col-lg-6">
-              <h1>PELIFY<span class="hl">.</span></h1>
-              <p class="lead">Un univers. Cinq façons d’innover. Créez votre site, entrez dans l’arène du gaming, explorez le cinéma, lisez vos données et ouvrez votre boutique.</p>
-              <div class="d-flex flex-wrap gap-2">
-                <a class="btn-p" href="#univers">Choisir mon univers</a>
-                <a class="btn-o" href="/studio/#tarifs">Voir les tarifs</a>
-              </div>
-            </div>
-            <div class="col-lg-6"><img class="scene" src="/img/scene-studio.svg" width="800" height="600" alt="Une personne tient un téléphone et une tablette affiche un site vitrine en cours de création" /></div>
-          </div>
-        </div>
-      </section>
-      <section class="p-sec" id="univers" aria-labelledby="t-univers">
-        <div class="container">
-          <h2 id="t-univers">Choisissez votre <span class="hl">univers</span></h2>
-          <div class="doors">
-          <a class="door u-cyan" href="/studio/" aria-label="PELIFY STUDIO, Votre projet, en ligne.">
-            <img class="dimg" src="/img/scene-studio.svg" width="800" height="600" loading="lazy" alt="" />
+          <div class="doors5">
+            <div class="gate-title"><h1 id="t-univers">PELIFY<span class="hl">.</span></h1><p class="lead">Cinq univers. Choisissez le vôtre.</p></div>
+          <a class="door u-cyan s1" href="/studio/" data-warp aria-label="PELIFY STUDIO, Votre projet, en ligne.">
+            <img class="dimg" src="/img/photos/studio-developpement.jpg" width="800" height="600" loading="lazy" alt="" />
             <span class="num">01</span>
             <h3>PELIFY <b>STUDIO</b></h3>
             <p class="tag">Votre projet, <b>en ligne.</b></p>
-            <p class="d">Sites web, applications, automatisation et conformité RGPD, avec des tarifs affichés.</p>
+            <p class="d">Sites web, applications, automatisation et conformité RGPD. Les tarifs sont affichés.</p>
             <span class="go">Entrer</span>
           </a>
-          <a class="door u-pink" href="/arena/" aria-label="PELIFY ARENA, Entrez dans le jeu.">
-            <img class="dimg" src="/img/scene-arena.svg" width="800" height="600" loading="lazy" alt="" />
+          <a class="door u-pink s2" href="/arena/" data-warp aria-label="PELIFY ARENA, Entrez dans le jeu.">
+            <img class="dimg" src="/img/photos/arena-joueurs.jpg" width="800" height="600" loading="lazy" alt="" />
             <span class="num">02</span>
             <h3>PELIFY <b>ARENA</b></h3>
             <p class="tag">Entrez <b>dans le jeu.</b></p>
-            <p class="d">Lives de promotion à réserver, tournois et communautés gaming.</p>
+            <p class="d">Trouvez un adversaire, lancez un défi ou organisez un tournoi. Gratuit.</p>
             <span class="go">Entrer</span>
           </a>
-          <a class="door u-cyan" href="/screen/" aria-label="PELIFY SCREEN, Le cinéma, scène par scène.">
+          <a class="door u-cyan s3" href="/screen/" data-warp aria-label="PELIFY SCREEN, Le cinéma, scène par scène.">
             <img class="dimg" src="/img/scene-screen.svg" width="800" height="600" loading="lazy" alt="" />
             <span class="num">03</span>
             <h3>PELIFY <b>SCREEN</b></h3>
             <p class="tag">Le cinéma, <b>scène par scène.</b></p>
-            <p class="d">Tournage pour les lieux de tournage, WhatFilm pour retrouver un film.</p>
+            <p class="d">Les lieux de tournage avec Tournage, et WhatFilm pour retrouver un film.</p>
             <span class="go">Entrer</span>
           </a>
-          <a class="door u-pink" href="/insights/" aria-label="PELIFY INSIGHTS, Voyez ce que les chiffres cachent.">
-            <img class="dimg" src="/img/scene-insights.svg" width="800" height="600" loading="lazy" alt="" />
+          <a class="door u-pink s4" href="/insights/" data-warp aria-label="PELIFY INSIGHTS, Voyez ce que les chiffres cachent.">
+            <img class="dimg" src="/img/photos/insights-tableau-de-bord.jpg" width="800" height="600" loading="lazy" alt="" />
             <span class="num">04</span>
             <h3>PELIFY <b>INSIGHTS</b></h3>
             <p class="tag">Voyez ce que <b>les chiffres cachent.</b></p>
-            <p class="d">Cartographie interactive, tableaux de bord et observatoires.</p>
+            <p class="d">Cartes interactives, tableaux de bord et observatoires.</p>
             <span class="go">Entrer</span>
           </a>
-          <a class="door u-cyan" href="/market/" aria-label="PELIFY MARKET, Vendez partout, simplement.">
+          <a class="door u-cyan s5" href="/market/" data-warp aria-label="PELIFY MARKET, Vendez partout, simplement.">
             <img class="dimg" src="/img/scene-market.svg" width="800" height="600" loading="lazy" alt="" />
             <span class="num">05</span>
             <h3>PELIFY <b>MARKET</b></h3>
             <p class="tag">Vendez partout, <b>simplement.</b></p>
-            <p class="d">Boutiques en ligne avec paiement, commandes et espace client.</p>
+            <p class="d">Une boutique en ligne avec paiement, commandes et espace client.</p>
             <span class="go">Entrer</span>
           </a>
-          </div>
-        </div>
-      </section>
-      <section class="band" aria-label="Tarifs">
-        <div class="container">
-          <div class="row g-3">
-            <div class="col-lg-8"><h2>Un site vitrine dès 900 €, une boutique en ligne dès 2&nbsp;900 €</h2></div>
-            <div class="col-lg-4 text-lg-end"><a class="btn-p" href="/studio/#tarifs">Voir tous les tarifs</a></div>
+            <p class="gate-hint">Cliquez sur un univers pour y entrer.</p>
           </div>
         </div>
       </section>
@@ -144,7 +123,7 @@
             <h3>Les univers</h3>
             <ul>
               <li><a href="/studio/">PELIFY Studio, sites et applications</a></li>
-              <li><a href="/arena/">PELIFY Arena, gaming et live</a></li>
+              <li><a href="/arena/">PELIFY Arena, gaming</a></li>
               <li><a href="/screen/">PELIFY Screen, cinéma</a></li>
               <li><a href="/insights/">PELIFY Insights, données</a></li>
               <li><a href="/market/">PELIFY Market, e-commerce</a></li>
@@ -154,7 +133,7 @@
             <h3>Services</h3>
             <ul>
               <li><a href="/studio/#tarifs">Tarifs des prestations numériques</a></li>
-              <li><a href="/arena/reserver/">Réserver un live</a></li>
+              <li><a href="/arena/jouer/">Défis et événements gaming</a></li>
               <li><a href="/arena/tournois/">Tournois gaming</a></li>
               <li><a href="/devis/">Demander un devis</a></li>
             </ul>
@@ -176,5 +155,6 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
+    <script src="/app/portal.js" defer></script>
   </body>
 </html>

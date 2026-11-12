@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    // L'application est servie sous /arena/reserver/ sur le site PELIFY.
+    // L'application est servie sous /arena/jouer/ sur le site PELIFY.
     base: process.env.APP_BASE || '/',
     plugins: [react(), tailwindcss()],
     resolve: {

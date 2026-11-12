@@ -1,4 +1,4 @@
-// Test d'intégration : lance le vrai serveur et déroule inscription, code, réservation, conflit, annulation.
+// Test d'intégration : lance le vrai serveur et déroule inscription, code, événements, places, participation, notifications.
 // Utilisation : npm test
 import test, { after, before } from 'node:test';
 import assert from 'node:assert/strict';
@@ -34,132 +34,135 @@ before(async () => {
 });
 after(() => server?.kill());
 
-const tomorrow = (days) => new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
-const D = tomorrow(10);
-const activity = { businessName: 'Chez Mama Afi', sector: 'restauration', productsDescription: 'Plats togolais', country: 'Togo', onScreenPhone: '+228 90 11 22 33' };
-const consents = { cgv: true, data: true, image: true };
-let session, bookingId;
 
-async function signup(email, phone, name) {
-  const reg = await call('POST', '/auth/register', { fullName: name, businessName: `Commerce ${name}`, email, phone, countryCode: '+228', password: 'motdepasse-solide', channel: 'sms' });
+const inDays = (d, h = 20) => new Date(Date.now() + d * 86400000 + h * 3600000 - (Date.now() % 86400000)).toISOString();
+const START = new Date(Date.now() + 5 * 86400000).toISOString();
+const LIMIT = new Date(Date.now() + 4 * 86400000).toISOString();
+
+async function signup(email, pseudo, extra = {}) {
+  const reg = await call('POST', '/auth/register', { pseudo, email, password: 'motdepasse-solide', channel: 'email', accept: true, ...extra });
   assert.equal(reg.status, 200, JSON.stringify(reg.data));
   const v = await call('POST', '/auth/verify', { challenge: reg.data.challenge, code: reg.data.demoCode });
   assert.equal(v.status, 200, JSON.stringify(v.data));
-  return v.cookie;
+  return { cookie: v.cookie, user: v.data.user };
 }
+const ev = (over = {}) => ({ title: 'Tournoi du vendredi', game: 'EA Sports FC', platform: 'PlayStation', type: 'tournoi', format: 'multi', maxPlayers: 4, startsAt: START, deadline: LIMIT, visibility: 'public', ...over });
+let orga, p1, p2, p3, evId;
 
 test('les routes de données exigent une connexion', async () => {
-  for (const p of ['/bookings', '/notifications']) assert.equal((await call('GET', p)).status, 401, p);
-  assert.equal((await call('POST', '/bookings', {})).status, 401);
-  assert.equal((await call('PATCH', '/bookings/x', { status: 'confirmed' })).status, 401);
-  assert.equal((await call('POST', '/send-email', { to: 'a@b.co', subject: 's', content: 'c' })).status, 404);
+  for (const p of ['/notifications', '/me/events', '/admin/overview', '/me/export']) assert.equal((await call('GET', p)).status, 401, p);
+  assert.equal((await call('POST', '/events', ev())).status, 401);
+  assert.equal((await call('GET', '/bookings')).status, 404);
   assert.equal((await call('GET', '/users')).status, 404);
 });
 
-test('le code 123456 n’ouvre aucun compte', async () => {
-  const reg = await call('POST', '/auth/register', { fullName: 'Ama Kodjo', businessName: 'Faux Shop', email: 'faux@example.com', phone: '90112200', countryCode: '+228', password: 'motdepasse-solide', channel: 'sms' });
+test('le code 123456 n’ouvre aucun compte et l’inscription exige les conditions', async () => {
+  const noAccept = await call('POST', '/auth/register', { pseudo: 'Faux Pseudo', email: 'faux@example.com', password: 'motdepasse-solide', channel: 'email' });
+  assert.equal(noAccept.status, 422);
+  const reg = await call('POST', '/auth/register', { pseudo: 'Faux Pseudo', email: 'faux@example.com', password: 'motdepasse-solide', channel: 'email', accept: true });
   assert.equal(reg.status, 200);
-  const code = reg.data.demoCode === '123456' ? '654321' : '123456';
-  const bad = await call('POST', '/auth/verify', { challenge: reg.data.challenge, code });
-  assert.equal(bad.status, 401);
-  assert.equal(bad.cookie, undefined);
+  const v = await call('POST', '/auth/verify', { challenge: reg.data.challenge, code: '123456' });
+  assert.equal(v.status, 401);
+  assert.equal(v.cookie, undefined);
+  assert.equal((await call('POST', '/auth/login', { identifier: 'faux@example.com', password: 'motdepasse-solide', channel: 'email' })).status, 401);
 });
 
-test('inscription : mot de passe faible ou identique au nom du commerce refusé', async () => {
-  const base = { fullName: 'Ama Kodjo', businessName: 'Ama Shop', email: 'ama2@example.com', phone: '90112244', countryCode: '+228', channel: 'sms' };
-  assert.equal((await call('POST', '/auth/register', { ...base, password: 'court' })).status, 422);
-  assert.equal((await call('POST', '/auth/register', { ...base, password: 'Ama Shop' })).status, 422);
+test('inscription, session et profil', async () => {
+  orga = await signup('orga@example.com', 'Orga_One');
+  assert.equal(orga.user.pseudo, 'Orga_One');
+  const me = await call('GET', '/auth/me', undefined, orga.cookie);
+  assert.equal(me.data.user.email, 'orga@example.com');
+  const bad = await call('PUT', '/me', { pseudo: '<script>' }, orga.cookie);
+  assert.equal(bad.status, 422);
+  const ok = await call('PUT', '/me', { games: ['Valorant', 'EA Sports FC'] }, orga.cookie);
+  assert.deepEqual(ok.data.user.games, ['Valorant', 'EA Sports FC']);
 });
 
-test('inscription puis code reçu : le compte s’ouvre et la session fonctionne', async () => {
-  session = await signup('ama@example.com', '90112233', 'Ama Kodjo');
-  const me = await call('GET', '/auth/me', undefined, session);
-  assert.equal(me.data.user.email, 'ama@example.com');
-  assert.equal(me.data.user.role, 'client');
-  assert.equal(me.data.user.password, undefined);
-});
-
-test('connexion : mauvais mot de passe refusé, puis code par e-mail ou par numéro', async () => {
-  assert.equal((await call('POST', '/auth/login', { identifier: 'ama@example.com', password: 'faux-mot-de-passe' })).status, 401);
-  assert.equal((await call('POST', '/auth/login', { identifier: 'inconnu@example.com', password: 'faux-mot-de-passe' })).status, 401);
-
-  const byEmail = await call('POST', '/auth/login', { identifier: 'ama@example.com', password: 'motdepasse-solide', channel: 'email' });
-  assert.equal(byEmail.status, 200);
-  assert.equal(byEmail.data.channel, 'email');
-  assert.match(byEmail.data.destination, /@/);
-  assert.equal(byEmail.cookie, undefined); // pas de session avant le code
-  const ok = await call('POST', '/auth/verify', { challenge: byEmail.data.challenge, code: byEmail.data.demoCode });
-  assert.equal(ok.status, 200);
-
-  await new Promise((r) => setTimeout(r, 30500)); // délai minimal entre deux codes
-  const byPhone = await call('POST', '/auth/login', { identifier: '+228 90 11 22 33', password: 'motdepasse-solide', channel: 'whatsapp' });
-  assert.equal(byPhone.status, 200);
-  assert.equal(byPhone.data.channel, 'whatsapp');
-  assert.doesNotMatch(byPhone.data.destination, /@/);
-});
-
-test('réservation : consentements, prix serveur, créneau passé et mode refusés', async () => {
-  const base = { mode: 'distance', packId: 'express', date: D, slotTime: '09:00', activity, consents, paymentMethod: 'tmoney' };
-  assert.equal((await call('POST', '/bookings', { ...base, consents: { cgv: true } }, session)).status, 422);
-  assert.equal((await call('POST', '/bookings', { ...base, date: tomorrow(-3) }, session)).status, 422);
-  assert.equal((await call('POST', '/bookings', { ...base, paymentMethod: 'onsite' }, session)).status, 422);
-  assert.equal((await call('POST', '/bookings', { ...base, slotTime: '11:00' }, session)).status, 422);
-
-  const r = await call('POST', '/bookings', { ...base, totalFcfa: 1 }, session);
+test('création d’un événement : validations côté serveur', async () => {
+  assert.equal((await call('POST', '/events', ev({ link: 'http://twitch.tv/x' }), orga.cookie)).status, 422, 'http refusé');
+  assert.equal((await call('POST', '/events', ev({ link: 'https://evil.example/x' }), orga.cookie)).status, 422, 'domaine refusé');
+  assert.equal((await call('POST', '/events', ev({ link: 'https://twitch.tv.evil.example/x' }), orga.cookie)).status, 422, 'faux sous-domaine refusé');
+  assert.equal((await call('POST', '/events', ev({ startsAt: new Date(Date.now() - 1000).toISOString() }), orga.cookie)).status, 422, 'passé refusé');
+  assert.equal((await call('POST', '/events', ev({ deadline: new Date(Date.now() + 9 * 86400000).toISOString() }), orga.cookie)).status, 422, 'limite après début');
+  const r = await call('POST', '/events', ev({ link: 'https://www.twitch.tv/pelify' }), orga.cookie);
   assert.equal(r.status, 201, JSON.stringify(r.data));
-  assert.equal(r.data.booking.status, 'pending');
-  assert.equal(r.data.booking.paymentStatus, 'pending');
-  assert.equal(r.data.booking.totalFcfa, 15000, 'le prix ne vient pas du navigateur');
-  bookingId = r.data.booking.id;
+  evId = r.data.event.id;
+  assert.equal(r.data.event.status, 'open');
+  const d = await call('POST', '/events', ev({ type: 'defi', maxPlayers: 50 }), orga.cookie);
+  assert.equal(d.data.event.maxPlayers, 2, 'un défi a deux places');
 });
 
-test('aucun chevauchement, y compris entre un bloc de 4 h et un live de 1 h 30', async () => {
-  const s2 = await signup('koffi@example.com', '91000000', 'Koffi Mensah');
-  const pay = { mode: 'presentiel', date: D, activity, consents, paymentMethod: 'onsite' };
-  assert.equal((await call('POST', '/bookings', { ...pay, packId: 'express', slotTime: '09:00' }, s2)).status, 409);
-  assert.equal((await call('POST', '/bookings', { ...pay, packId: 'marathon', slotTime: '09:00' }, s2)).status, 409);
-  const free = await call('POST', '/bookings', { ...pay, packId: 'express', slotTime: '14:00' }, s2);
-  assert.equal(free.status, 201);
-  assert.equal((await call('POST', '/bookings', { ...pay, packId: 'marathon', slotTime: '14:00' }, s2)).status, 409);
-
-  const busy = (await call('GET', '/availability')).data.busy;
-  assert.ok(busy.some((b) => b.date === D && b.slotTime === '09:00'));
-  assert.equal(JSON.stringify(busy).includes('Koffi'), false, 'aucune donnée personnelle dans les disponibilités');
-});
-
-test('un client ne voit que ses réservations et ne peut pas agir comme le studio', async () => {
-  const mine = await call('GET', '/bookings', undefined, session);
-  assert.equal(mine.data.length, 1);
-  assert.equal(mine.data[0].userId, undefined);
-  assert.equal((await call('PATCH', `/bookings/${bookingId}`, { status: 'confirmed' }, session)).status, 403);
-  const notifs = await call('GET', '/notifications', undefined, session);
-  assert.ok(notifs.data.every((n) => n.recipientType === 'client'));
-});
-
-test('le studio est reconnu par sa liste d’adresses, pas par le mot « regie » dans l’e-mail', async () => {
-  const fake = await signup('faux-admin@example.com', '92000001', 'Faux Studio');
-  assert.equal((await call('GET', '/auth/me', undefined, fake)).data.user.role, 'client');
-  assert.equal((await call('PATCH', `/bookings/${bookingId}`, { status: 'confirmed' }, fake)).status, 403);
-
-  const studio = await signup('studio@example.com', '92000002', 'Studio');
-  assert.equal((await call('GET', '/auth/me', undefined, studio)).data.user.role, 'regie_admin');
-  const all = await call('GET', '/bookings', undefined, studio);
-  assert.equal(all.data.length, 2);
-
-  const conf = await call('PATCH', `/bookings/${bookingId}`, { status: 'confirmed', paymentStatus: 'completed' }, studio);
-  assert.equal(conf.data.booking.status, 'confirmed');
-  assert.equal(conf.data.booking.paymentStatus, 'completed');
-});
-
-test('annulation : possible à plus de 72 h, libère le créneau', async () => {
-  const r = await call('POST', `/bookings/${bookingId}/cancel`, {}, session);
+test('la liste est publique, sans identifiant du propriétaire', async () => {
+  const r = await call('GET', '/events');
   assert.equal(r.status, 200);
-  assert.equal(r.data.booking.status, 'cancelled');
-  const busy = (await call('GET', '/availability')).data.busy;
-  assert.equal(busy.some((b) => b.date === D && b.slotTime === '09:00'), false);
+  const e = r.data.find((x) => x.id === evId);
+  assert.ok(e);
+  assert.equal(e.ownerId, '');
+  const priv = await call('POST', '/events', ev({ title: 'Salon privé', visibility: 'prive' }), orga.cookie);
+  assert.ok(!(await call('GET', '/events')).data.some((x) => x.id === priv.data.event.id), 'privé absent de la liste');
+  assert.equal((await call('GET', `/events/${priv.data.event.id}`)).status, 200, 'privé accessible par lien');
 });
 
-test('une origine étrangère est refusée', async () => {
-  const res = await fetch(`${BASE}/api/auth/logout`, { method: 'POST', headers: { origin: 'https://evil.example', 'content-type': 'application/json' }, body: '{}' });
-  assert.equal(res.status, 403);
+test('places, doublons et organisateur', async () => {
+  p1 = await signup('p1@example.com', 'Joueur1');
+  p2 = await signup('p2@example.com', 'Joueur2');
+  p3 = await signup('p3@example.com', 'Joueur3');
+  assert.equal((await call('POST', `/events/${evId}/join`, {}, orga.cookie)).status, 403, 'organisateur refusé');
+  assert.equal((await call('POST', `/events/${evId}/join`, {}, p1.cookie)).status, 200);
+  assert.equal((await call('POST', `/events/${evId}/join`, {}, p1.cookie)).data.code, 'exists');
+  const small = (await call('POST', '/events', ev({ title: 'Duel rapide', type: 'defi' }), orga.cookie)).data.event.id;
+  const joins = await Promise.all([p1, p2, p3].map((p) => call('POST', `/events/${small}/join`, {}, p.cookie)));
+  assert.equal(joins.filter((j) => j.status === 200).length, 2, 'deux places seulement, même en parallèle');
+  assert.equal(joins.filter((j) => j.data.code === 'full').length, 1);
+});
+
+test('le propriétaire reçoit une notification, le lecteur peut la marquer comme lue', async () => {
+  const n = await call('GET', '/notifications', undefined, orga.cookie);
+  assert.ok(n.data.length >= 1 && n.data.some((x) => /Nouveau participant/.test(x.title)));
+  assert.equal(n.data[0].read, false);
+  await call('POST', '/notifications/read', {}, orga.cookie);
+  assert.ok((await call('GET', '/notifications', undefined, orga.cookie)).data.every((x) => x.read));
+  assert.equal((await call('GET', '/notifications', undefined, p3.cookie)).data.length, 0, 'chacun ne voit que les siennes');
+});
+
+test('validation des demandes par l’organisateur', async () => {
+  const id = (await call('POST', '/events', ev({ title: 'Sur demande', requireApproval: true }), orga.cookie)).data.event.id;
+  const j = await call('POST', `/events/${id}/join`, {}, p2.cookie);
+  assert.equal(j.data.status, 'pending');
+  const detail = await call('GET', `/events/${id}`, undefined, orga.cookie);
+  const part = detail.data.participants[0];
+  assert.equal((await call('POST', `/events/${id}/participants/${part.userId}`, { action: 'accept' }, p1.cookie)).status, 403, 'un joueur ne gère pas');
+  assert.equal((await call('POST', `/events/${id}/participants/${part.userId}`, { action: 'accept' }, orga.cookie)).status, 200);
+  assert.ok((await call('GET', '/notifications', undefined, p2.cookie)).data.some((x) => /acceptée/.test(x.title)));
+  assert.equal((await call('GET', `/events/${id}`)).data.participants[0].userId, undefined, 'identifiant masqué au public');
+});
+
+test('annulation : participants prévenus, plus d’inscription', async () => {
+  const r = await call('POST', `/events/${evId}/cancel`, {}, p1.cookie);
+  assert.equal(r.status, 403);
+  assert.equal((await call('POST', `/events/${evId}/cancel`, {}, orga.cookie)).data.event.status, 'cancelled');
+  assert.ok((await call('GET', '/notifications', undefined, p1.cookie)).data.some((x) => /annulé/.test(x.title)));
+  assert.equal((await call('POST', `/events/${evId}/join`, {}, p3.cookie)).status, 409);
+});
+
+test('signalement, administration et journal', async () => {
+  assert.equal((await call('POST', '/reports', { targetType: 'event', targetId: evId, reason: 'Contenu inapproprié' }, p1.cookie)).status, 200);
+  assert.equal((await call('GET', '/admin/overview', undefined, p1.cookie)).status, 403);
+  const admin = await signup('studio@example.com', 'Admin_Pelify');
+  const o = await call('GET', '/admin/overview', undefined, admin.cookie);
+  assert.equal(o.status, 200);
+  assert.ok(o.data.stats.users >= 5 && o.data.reports.length === 1);
+  assert.ok(o.data.users.every((u) => u.passwordHash === undefined));
+  await call('POST', `/admin/users/${p3.user ? (o.data.users.find((u) => u.email === 'p3@example.com').id) : ''}/disable`, {}, admin.cookie);
+  assert.equal((await call('POST', '/events/x/join', {}, p3.cookie)).status, 403, 'compte suspendu');
+});
+
+test('export et suppression du compte', async () => {
+  const ex = await call('GET', '/me/export', undefined, p2.cookie);
+  assert.equal(ex.status, 200);
+  assert.ok(ex.data.participations.length >= 1);
+  assert.equal((await call('DELETE', '/me', { password: 'faux' }, p2.cookie)).status, 401);
+  assert.equal((await call('DELETE', '/me', { password: 'motdepasse-solide' }, p2.cookie)).status, 200);
+  assert.equal((await call('GET', '/auth/me', undefined, p2.cookie)).data.user, null);
+  assert.equal((await call('POST', '/auth/login', { identifier: 'p2@example.com', password: 'motdepasse-solide', channel: 'email' })).status, 401);
 });

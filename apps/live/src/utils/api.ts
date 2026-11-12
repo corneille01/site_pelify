@@ -1,11 +1,10 @@
-import type { Booking, NotificationLog, UserAccount } from '../types';
+import type { AppNotification, ArenaEventView, Participant, ReportView, UserAccount } from '../types';
 
 export type Channel = 'email' | 'sms' | 'whatsapp';
 
 export interface ServerConfig {
   demo: boolean;
   channels: { email: boolean; sms: boolean; whatsapp: boolean };
-  payment: { tmoney: boolean; flooz: boolean; mtn_momo: boolean };
 }
 
 export interface Challenge {
@@ -14,14 +13,6 @@ export interface Challenge {
   destination: string;
   expiresInMinutes: number;
   demoCode?: string;
-}
-
-export interface Busy {
-  date: string;
-  slotTime: string;
-  slotEndTime: string;
-  startsAt: string;
-  endsAt: string;
 }
 
 export class ApiError extends Error {
@@ -58,33 +49,22 @@ async function call<T>(method: string, path: string, body?: unknown): Promise<T>
 }
 
 export interface RegisterInput {
-  fullName: string;
-  businessName: string;
+  pseudo: string;
   email: string;
   phone: string;
   countryCode: string;
   password: string;
   channel: Channel;
-  sector?: string;
-  country?: string;
-  onScreenPhone?: string;
+  accept: boolean;
 }
 
-export interface BookingInput {
-  mode: string;
-  packId: string;
-  date: string;
-  slotTime: string;
-  activity: {
-    businessName: string;
-    sector: string;
-    productsDescription: string;
-    country: string;
-    onScreenPhone: string;
-    liveGoal: string;
-  };
-  paymentMethod: string;
-  consents: { cgv: boolean; data: boolean; image: boolean };
+export type EventInput = Partial<Omit<ArenaEventView, 'id' | 'status' | 'taken'>>;
+
+export interface AdminOverview {
+  stats: { users: number; events: number; open: number; reports: number };
+  users: { id: string; pseudo: string; email: string; createdAt: string; disabled: boolean; verified: boolean }[];
+  events: ArenaEventView[];
+  reports: ReportView[];
 }
 
 export const api = {
@@ -99,11 +79,25 @@ export const api = {
   me: () => call<{ user: UserAccount | null }>('GET', '/auth/me'),
   updateMe: (patch: Partial<UserAccount>) => call<{ user: UserAccount }>('PUT', '/me', patch),
   changePassword: (currentPassword: string, newPassword: string) => call<{ ok: boolean }>('POST', '/me/password', { currentPassword, newPassword }),
-  availability: () => call<{ busy: Busy[] }>('GET', '/availability'),
-  bookings: () => call<Booking[]>('GET', '/bookings'),
-  createBooking: (b: BookingInput) => call<{ booking: Booking }>('POST', '/bookings', b),
-  cancelBooking: (id: string) => call<{ booking: Booking }>('POST', `/bookings/${encodeURIComponent(id)}/cancel`, {}),
-  patchBooking: (id: string, patch: { status?: string; paymentStatus?: string; regieNotes?: string }) =>
-    call<{ booking: Booking }>('PATCH', `/bookings/${encodeURIComponent(id)}`, patch),
-  notifications: () => call<NotificationLog[]>('GET', '/notifications'),
+  exportMe: () => call<unknown>('GET', '/me/export'),
+  deleteMe: (password: string) => call<{ ok: boolean }>('DELETE', '/me', { password }),
+
+  events: () => call<ArenaEventView[]>('GET', '/events'),
+  event: (id: string) => call<{ event: ArenaEventView; participants: Participant[] }>('GET', `/events/${encodeURIComponent(id)}`),
+  createEvent: (b: EventInput) => call<{ event: ArenaEventView }>('POST', '/events', b),
+  updateEvent: (id: string, b: EventInput) => call<{ event: ArenaEventView }>('PUT', `/events/${encodeURIComponent(id)}`, b),
+  cancelEvent: (id: string) => call<{ event: ArenaEventView }>('POST', `/events/${encodeURIComponent(id)}/cancel`, {}),
+  finishEvent: (id: string, result: string) => call<{ event: ArenaEventView }>('POST', `/events/${encodeURIComponent(id)}/finish`, { result }),
+  join: (id: string) => call<{ status: string }>('POST', `/events/${encodeURIComponent(id)}/join`, {}),
+  leave: (id: string) => call<{ ok: boolean }>('POST', `/events/${encodeURIComponent(id)}/leave`, {}),
+  decide: (id: string, userId: string, action: 'accept' | 'refuse') => call<{ ok: boolean }>('POST', `/events/${encodeURIComponent(id)}/participants/${encodeURIComponent(userId)}`, { action }),
+  myEvents: () => call<{ created: ArenaEventView[]; joined: ArenaEventView[] }>('GET', '/me/events'),
+
+  notifications: () => call<AppNotification[]>('GET', '/notifications'),
+  markRead: (id?: string) => call<{ ok: boolean }>('POST', '/notifications/read', { id }),
+  report: (targetType: 'event' | 'user', targetId: string, reason: string) => call<{ ok: boolean }>('POST', '/reports', { targetType, targetId, reason }),
+
+  admin: () => call<AdminOverview>('GET', '/admin/overview'),
+  resolveReport: (id: string) => call<{ ok: boolean }>('POST', `/admin/reports/${encodeURIComponent(id)}/resolve`, {}),
+  setUserDisabled: (id: string, disabled: boolean) => call<{ ok: boolean }>('POST', `/admin/users/${encodeURIComponent(id)}/${disabled ? 'disable' : 'enable'}`, {}),
 };
